@@ -1,0 +1,21 @@
+{
+  "name": "html-validate",
+  "version": "1.0.0",
+  "description": "html validator code",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Juanpi Ferrari",
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "^1.10.2",
+    "express": "^4.11.1",
+    "html-validator": "0.0.8",
+    "morgan": "^1.5.1"
+  },
+  "dependencies": {
+    "css-validator": "^0.5.1"
+  }
+}
