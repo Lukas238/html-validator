@@ -2,21 +2,35 @@
   "name": "html-validate",
   "version": "1.0.0",
   "description": "html validator code",
+  "author": "Juanpi Ferrari",
+  "contributors": [
+    {
+      "name": "Pablo Galano",
+      "email": "pablo.galano@mrm-mccann.com"
+    }
+  ],
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MRM-BA/html-validator.git"
+  },
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "Juanpi Ferrari",
-  "license": "ISC",
-  "devDependencies": {
-    "body-parser": "^1.10.2",
-    "express": "^4.11.1",
-    "html-validator": "0.0.8",
-    "morgan": "^1.5.1"
+    "test": "./node_modules/.bin/mocha --ui bdd --reporter spec --require test/helpers/setup --watch test/app/lib",
+    "start": "set NODE_ENV=local&& node server.js"
   },
   "dependencies": {
+    "body-parser": "^1.10.2",
     "css-validator": "^0.5.1",
+    "express": "^4.11.1",
+    "html-validator": "0.0.8",
+    "morgan": "^1.5.1",
     "ng-file-upload": "^3.0.2"
+  },
+  "devDependencies": {
+    "chai": "^2.0.0",
+    "grunt": "^0.4.5",
+    "grunt-jsdoc": "^0.5.8",
+    "mocha": "^2.1.0"
   }
 }
