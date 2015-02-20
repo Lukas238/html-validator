@@ -14,6 +14,7 @@ To run & work on this project you need to have the following installed:
 
 ##Installation & Configuration
 Please, follow this steps to install & configure all you need before starting to work on the project:
+
 1. Run this to install all the node_modules:
 ```
 $ npm install
