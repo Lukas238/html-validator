@@ -1,6 +1,6 @@
 'use_strict';
 
-var mrmApp = angular.module('mrmValidate', ['ngRoute', 'ngSanitize', ['ngMock'], 'angularFileUpload', 'validatorController']);
+var mrmApp = angular.module('mrmValidate', ['ngRoute', 'ngSanitize', 'ngMock', 'angularFileUpload', 'validatorController']);
 
 
 mrmApp.config(['$routeProvider', function($routeProvider, $locationProvider) {
