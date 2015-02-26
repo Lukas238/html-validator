@@ -20,7 +20,7 @@ angular.module('validatorController', ['validatorService'])
             }
         };*/
 
-        
+
         $scope.$watch('files', function() {
             $scope.upload($scope.files);
         });

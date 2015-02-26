@@ -1,8 +1,10 @@
 .button {
     -moz-appearance: button;
     /* Firefox */
+    
     -webkit-appearance: button;
     /* Safari and Chrome */
+    
     padding: 10px;
     margin: 10px;
     width: 100px;

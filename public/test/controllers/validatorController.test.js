@@ -57,7 +57,7 @@
       $scope.grade();
       expect($scope.strength).toEqual('weak');
     });*/
-  //});
+//});
 //});
 
 /*describe('Validate File', function(){
