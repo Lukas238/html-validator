@@ -15,15 +15,22 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'public/application/js/angular.min.js',          
-      'public/application/*.js',
-      'public/application/**/*.js',      
-      'public/test/**/*.js'      
+      'public/app/lib/angular/angular.1.3.14.js',
+      'public/app/lib/angular/angular-*.js',
+      'public/test/lib/angular/angular-mocks.js',      
+      'public/app/*.js',
+      'public/app/**/*.js',
+      'public/app/lib/angular/*.js',                 
+      'public/test/**/*.js'
+            
     ],
 
 
     // list of files to exclude
-    exclude: [
+    exclude: [       
+        'public/app/lib/angular/angular.1.3.14.min.js',
+        //'public/app/lib/angular/angular-mocks.js' 
+            
     ],
 
 
@@ -58,7 +65,33 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
+
+    customLaunchers: {
+      'PhantomJS_custom': {
+        base: 'PhantomJS',
+        options: {
+          windowName: 'my-window',
+          settings: {
+            webSecurityEnabled: false
+          }
+        },
+        flags: ['--remote-debugger-port=9000']
+      }
+    },
+
+    customLaunchers: {
+      'PhantomJS_custom': {
+        base: 'PhantomJS',
+        options: {
+          windowName: 'my-window',
+          settings: {
+            webSecurityEnabled: false
+          }
+        },
+        flags: ['--remote-debugger-port=9000']
+      }
+    },
 
 
     // Continuous Integration mode

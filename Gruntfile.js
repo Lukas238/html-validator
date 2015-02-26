@@ -9,18 +9,23 @@ module.exports = function(grunt) {
             frontend: {
                 options: {
                     destination: './doc/frontend',
-                    template : 'node_modules/grunt-jsdoc/node_modules/ink-docstrap/template',
-                    configure : './doc/jsdoc.frontend.conf.json'
+                    template: 'node_modules/grunt-jsdoc/node_modules/ink-docstrap/template',
+                    configure: './doc/jsdoc.frontend.conf.json'
                 },
                 src: ['./public/**/*.js']
             },
             backend: {
                 options: {
                     destination: './doc/backend',
-                    template : 'node_modules/grunt-jsdoc/node_modules/ink-docstrap/template',
-                    configure : './doc/jsdoc.backend.conf.json'
+                    template: 'node_modules/grunt-jsdoc/node_modules/ink-docstrap/template',
+                    configure: './doc/jsdoc.backend.conf.json'
                 },
                 src: ['./app/**/*.js', './server.js', 'README.md']
+            }
+        },
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js'
             }
         }
 
@@ -29,8 +34,9 @@ module.exports = function(grunt) {
 
     /***** LOAD TASKS *****/
     grunt.loadNpmTasks('grunt-jsdoc');
+    grunt.loadNpmTasks('grunt-karma');
 
 
     /***** REGISTER TASKS *****/
-    
+
 }

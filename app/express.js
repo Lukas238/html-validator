@@ -20,7 +20,7 @@ var app = express();
 // MIDDLEWARES
     // Here goes the routing for view the statics assets (only if is enabled in configuration file)
     if (config.viewStaticFiles) {
-        app.use('/public', express.static(path.join(__dirname, '../public/application/')));
+        app.use('/public', express.static(path.join(__dirname, '../public/app/')));
     }
     // Here goes the routing for view the documentation (only if is enabled in configuration file)
     if (config.viewDocumentation) {
