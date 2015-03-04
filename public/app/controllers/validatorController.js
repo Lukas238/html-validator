@@ -4,31 +4,24 @@ angular.module('validatorController', ['validatorService'])
 
 .controller({
     'HtmlValidatorControler': function($scope, $http, $upload, ValidatorService) {
-        console.log("htmlValidatorControler");
-        //$scope.upload = [];
-        //$scope.file = [];
 
-        /*$scope.password = '1234';
-        $scope.grade = function() {
-            var size = $scope.password.length;
-            if (size > 8) {
-                $scope.strength = 'strong';
-            } else if (size > 3) {
-                $scope.strength = 'medium';
-            } else {
-                $scope.strength = 'weak';
-            }
-        };*/
+        $scope.submitFile = function(){
+            $scope.isDisabledButton = true;
 
-
+        };
+        
         $scope.$watch('files', function() {
             $scope.upload($scope.files);
+            //console.dir($scope.files);
         });
 
         $scope.upload = function(files) {
             if (files && files.length) {
+                 console.log(files);
+                 console.log('------')
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
+                   
                     $upload.upload({
                         url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
                         fields: {
@@ -39,9 +32,11 @@ angular.module('validatorController', ['validatorService'])
                         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                         console.log('progress: ' + progressPercentage + '% ' +
                             evt.config.file.name);
-                    }).success(function(data, status, headers, config) {
-                        console.log('file ' + config.file.name + 'uploaded. Response: ' +
-                            JSON.stringify(data));
+                    }).success(function(data) { 
+                        //$scope.data = "data"; 
+                        console.log(data);                      
+                        /*console.log('file ' + config.file.name + 'uploaded. Response: ' +
+                            JSON.stringify(data));*/
                     });
                 }
             }

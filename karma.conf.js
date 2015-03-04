@@ -17,7 +17,9 @@ module.exports = function(config) {
     files: [
       'public/app/lib/angular/angular.1.3.14.js',
       'public/app/lib/angular/angular-*.js',
-      'public/test/lib/angular/angular-mocks.js',      
+      'public/test/lib/angular/angular-mocks.js',
+      'public/test/lib/sinon-1.12.2.js',
+      'public/test/lib/jasmine-sinon.js ',          
       'public/app/*.js',
       'public/app/**/*.js',
       'public/app/lib/angular/*.js',                 
