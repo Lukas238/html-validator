@@ -3,7 +3,7 @@
 angular.module('validatorService', [])
 
 .factory('ValidatorService', function($http) {
-    console.log("ValidatorService");
+   
     var ValidatorService = function() {
 
         /*this.getCookiePolicy = function() {

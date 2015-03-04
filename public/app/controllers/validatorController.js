@@ -11,14 +11,13 @@ angular.module('validatorController', ['validatorService'])
         };
         
         $scope.$watch('files', function() {
-            $scope.upload($scope.files);
-            //console.dir($scope.files);
+            $scope.upload($scope.files);            
         });
 
         $scope.upload = function(files) {
+            
             if (files && files.length) {
-                 console.log(files);
-                 console.log('------')
+                
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
                    

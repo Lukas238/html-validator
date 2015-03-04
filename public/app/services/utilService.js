@@ -3,7 +3,7 @@
 angular.module('utilService', [])
 
 .factory('UtilService', function($http) {
-    console.log("UtilService");
+    
     var UtilService = function() {
 
 

@@ -1,36 +1,8 @@
 'use strict';
 
-/*describe('HtmlValidatorControler', function(){
-  var testController,
-      testScope;
- 
-  beforeEach(function(){
-    module('mrmValidate');
- 
-    inject(function($rootScope, $controller){
-      testScope = $rootScope.$new();
-      testController = $controller('HtmlValidatorControler', {
-        $scope: testScope,
-        /*SomeService: {
-          refreshDefaults: function(){},
-          registerItem: function(){},
-          unRegisterItem: function(){}
-        }*//*
-      });
-    });
-  });
- 
-  it('has default messages', function(){
-    expect(testScope.helloMsg).toBe('World!');
-   // expect(testScope.errorMsg).toBe('');
-  });
-});*/
-
-
- describe("Testing Upload Controller", function() {
+describe("Testing Upload Controller", function() {
     beforeEach(angular.mock.module('mrmValidate'));
-   // beforeEach(angular.mock.module('angularFileUpload'));
-
+   
     describe("FileUploadController", function() {
         var $scope, $upload, $rootScope;
 
@@ -66,12 +38,17 @@
 
             }));
 
-            it('returns http requests successfully and resolves the promise', function() {
-                
-                var data = '{"success":"true"}';                
-
+            it("The 'mockFile' & 'httpController' matcher compares against 'undefined'", function () {
                 expect(httpController).toBeDefined();
 
+                expect(mockFile).toBeDefined();               
+
+            });
+
+            it('returns http requests successfully and resolves the promise', function() {
+                
+                var data = '{"success":"true"}';       
+               
                 $httpBackend.expectPOST(expectedUrl).respond(200, data);                
 
                 promise = $upload.upload(mockFile);                
@@ -89,49 +66,3 @@
     });
 }); 
 
-/*describe('Unit Testing File Upload', function() {
-    //To execute some code before every spec
-    beforeEach(module('mrmValidate'));
-    
-    /*it('should have a HtmlValidatorControler controller', function() {
-        expect(mrmValidate).toBeDefined();
-    });*/
-/*var $controller;
-
-    beforeEach(inject(function(_$controller_){
-        // The injector unwraps the underscores (_) from around the parameter names when matching
-        $controller = _$controller_;
-    }));
-
-    describe('HtmlValidatorControler', function(){
-        it('should file upload', function(){
-            var $scope = {};
-            var controller = $controller('HtmlValidatorControler', { $scope: $scope });
-            $scope.upload([File]);
-            expect($scope.files).toBe([File]);
-        });
-    })
-
-});*/
-
-/*describe('Validate File', function(){
-    //To execute some code before every spec
-    beforeEach(module('mrmValidate'));
-
-    var $controller;
-
-    beforeEach(inject(function(_$controller_){
-        // The injector unwraps the underscores (_) from around the parameter names when matching
-        $controller = _$controller_;
-    }));
-
-    describe('File upload', function(){
-        it('Empty File', function(){
-            var $scope = {};
-            var controller = $controller('HtmlValidatorControler', { $scope: $scope });
-            //expect($scope.files.isEmpty()).toEqual(true);
-        });//it
-    });
-
-
-});*/
