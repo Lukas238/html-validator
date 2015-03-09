@@ -20,7 +20,7 @@
     "start": "set NODE_ENV=local&& node server.js"
   },
   "browser": {
-    "angular": "./node_modules/angular/angular.js"
+    "angular": "./app/js/third-party/angular/angular-index.js"
   },
   "dependencies": {
     "angular": "^1.3.14",
