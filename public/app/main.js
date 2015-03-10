@@ -1,6 +1,6 @@
 'use_strict';
 
-//var angular = require('angular');
+var angular = require('angular');
 
 var mrmApp = angular.module('mrmValidate', ['ngRoute', 'ngSanitize', 'angularFileUpload', 'validatorController']);
 
