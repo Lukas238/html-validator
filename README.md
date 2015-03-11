@@ -22,7 +22,7 @@ $ npm install
 2. Set your configurations on file /config/config.{{NODE_ENV}}.js (where {{NODE_ENV}} is the environment in which you work, and takes one of this values: "local", "dev", "stage" or "prod")
 
 
-###Execution (only works on Windows)
+###Execution
 - Windows:
 ```
 $ npm start

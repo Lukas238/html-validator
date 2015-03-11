@@ -5,14 +5,14 @@ var app = require('./../../app/express');
 describe('Testing for Router', function() {
     
     describe('GET /', function() {
-        it('Should response text', function(done) {
+        it('Should response Forbidden', function(done) {
             request(app)
                 .get('/')
                 .send()
-                .expect(200)
+                .expect(403)
                 .end(function(err, res) {
                     expect(res).to.have.property('text');
-                    expect(res.text).equal('hello world in port 3000');
+                    expect(res.text).equal('Forbidden');
                     done(err);
                 });
         });
