@@ -1,5 +1,4 @@
-var env = process.env.NODE_ENV || 'prod',
-    config = require('./../config/config.'+env),
+var config = require('./../config/config'),
     express = require('express'),
     options = {};
 

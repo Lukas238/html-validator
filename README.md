@@ -23,14 +23,24 @@ $ npm install
 
 
 ###Execution (only works on Windows)
+- Windows:
 ```
 $ npm start
 ```
+- Unix:
+```
+$ NODE_ENV=local node server.js
+```
 
 
-###Test (only works on Windows)
+###Test
+- Windows:
 ```
 $ npm test
+```
+- Unix:
+```
+$ make test
 ```
 
 
