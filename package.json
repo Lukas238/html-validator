@@ -16,7 +16,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --ui bdd --reporter spec --require test/helpers/setup --watch test/app/lib",
+    "test": "./node_modules/.bin/mocha --ui bdd --reporter spec --require test/helpers/setup --recursive --watch test/app",
     "start": "set NODE_ENV=local&& node server.js"
   },
   "dependencies": {
@@ -31,6 +31,7 @@
     "chai": "^2.0.0",
     "grunt": "^0.4.5",
     "grunt-jsdoc": "^0.5.8",
-    "mocha": "^2.1.0"
+    "mocha": "^2.1.0",
+    "supertest": "^0.15.0"
   }
 }

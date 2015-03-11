@@ -1,4 +1,4 @@
-var env = process.env.NODE_ENV || 'production',
+var env = process.env.NODE_ENV || 'prod',
     config = require('./config/config.'+env),
     server = require('./app/express');
 
