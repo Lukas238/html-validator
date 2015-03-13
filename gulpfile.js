@@ -1,13 +1,17 @@
+'use strict';
+
+require('./gulp');
+
 /*
 * Dependencies
 */
 
-var gulp = require ('gulp'),
+/*var gulp = require ('gulp'),
     concat = require ('gulp-concat'),
     uglify = require ('gulp-uglify'),
-    obfuscate = require ('gulp-obfuscate'),
-    connect = require('gulp-connect'),
-    historyApiFallback = require('connect-history-api-fallback');
+    obfuscate = require ('gulp-obfuscate'),*/
+    /*connect = require('gulp-connect'),
+    historyApiFallback = require('connect-history-api-fallback');*/
 
 
 
@@ -15,16 +19,16 @@ var gulp = require ('gulp'),
 * Configuration tasks
 */
 
-gulp.task ('minify-obfuscate', function () {
-    gulp.src (['public/app/*.js','public/app/*/*.js'])
+/*gulp.task ('minify-obfuscate', function () {
+    gulp.src (['public/app/*.js','public/app/* /*.js'])
         .pipe(concat('all.js'))
         .pipe(uglify())
         .pipe(obfuscate())
         .pipe(gulp.dest('public/build/'))
-});
+});*/
 
 
-gulp.task('webserver', function() {
+/*gulp.task('webserver', function() {
   connect.server({
     root: './public/app',
     hostname: '0.0.0.0',
@@ -34,6 +38,6 @@ gulp.task('webserver', function() {
       return [ historyApiFallback ];
     }
   });
-});
+});*/
 
-gulp.watch(['public/app/*.js','public/app/*/*.js'], ['minify-obfuscate']);
+//gulp.watch(['public/app/*.js','public/app/*/*.js'], ['minify-obfuscate']);
