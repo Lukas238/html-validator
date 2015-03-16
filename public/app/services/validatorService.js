@@ -1,22 +1,28 @@
-'use_strict';
+'use strict';
 
-angular.module('validatorService', [])
 
-.factory('ValidatorService', function($http) {
-   
+angular.module('validatorService', ['mrmConfiguration'])
+
+.factory('ValidatorService', function($http, serverConfiguration) {
+    var publicApiPath = serverConfiguration.getPublicApiPath().replace(/:([^:]*)$/, '\:$1');    
+    
     var ValidatorService = function() {
 
-        /*this.getCookiePolicy = function() {
-            var getCookiePolicy = $http({
-                method: 'GET',
-                url: '../../src/models/cookie-policy.json',
-                withCredentials: true
-            }).then(function(response) {
-                return response.data;
-            });
+          this.fileUpload = function(idEvent) {
 
-            return getCookiePolicy;
-        };*/
+                var servicePath = 'validation';
+                var url = publicApiPath + servicePath;
+                
+                var fileUploadPromise = $http({
+                    method: 'POST',
+                    url: url,
+                    withCredentials: true
+                }).then(function(response) {
+                    var data = response.data;
+                    return data;
+                });
+                return fileUploadPromise;
+            };
 
     }
 

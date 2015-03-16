@@ -1,4 +1,4 @@
 node_modules
 npm-debug.log
 build
-public/config/config.js
+public/app/config/config.js
