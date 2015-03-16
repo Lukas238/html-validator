@@ -2,7 +2,9 @@ var config = require('./../config/config'),
     path = require('path'),
     express = require('express'),
     bodyParser = require('body-parser'),
-    router = require('./router');
+    multer = require('multer'),
+    router = require('./router'),
+    filesManager = require('./helpers/filesManager');
 
 
 /**
@@ -30,8 +32,21 @@ var app = express();
         var morgan = require('morgan');
         app.use(morgan('dev'));
     }
-    // Body Parser
-    app.use(bodyParser.json());
+    // Parsers
+    app.use(bodyParser.json()); // for parsing application/json
+    app.use(multer({
+        dest: './app/uploads/',
+        limits: {
+            files: 2,
+            fileSize: 2097152 // 2 MB
+        },
+        onError: function(error, next) {
+            filesManager.onError(error, next);
+        },
+        onFileSizeLimit: function(file, callback) {
+            filesManager.onFileSizeLimit(file, callback);
+        }
+    })); // for parsing multipart/form-data
 
 
 // ROUTES
