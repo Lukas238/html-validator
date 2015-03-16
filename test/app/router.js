@@ -17,5 +17,20 @@ describe('Testing for Router', function() {
                 });
         });
     });
+
+
+    describe('POST /validation', function() {
+        it('Should response 200', function(done) {
+            request(app)
+            .post('/validation')
+            .attach('htmlFile', './fixtures/template.html')
+            .send()
+            .expect(200)
+            .end(function(err, res) {
+
+                done(err);
+            });
+        });
+    });
     
 });
