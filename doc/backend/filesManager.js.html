@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Email Validator - Backend Documentation Index</title>
+	<title>Email Validator - Backend Documentation Source: helpers/filesManager.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -60,78 +60,98 @@
 	<div class="row-fluid">
 
 		
-		<div class="span8">
-			
+			<div class="span12">
+				
 				<div id="main">
 					
 
 
-	
-	<span class="page-title">Index</span>
-	
-	
+		<h1 class="page-title">Source: helpers/filesManager.js</h1>
+    
+<section>
+	<article>
+		<pre
+			class="sunlight-highlight-javascript linenums">var fs = require('fs'),
+    path = require('path');
+
+/**
+ * This object is in charge of managing user-uploaded files
+ * @namespace filesManager
+ * @author Pablo Galano 
+ */
+var filesManager = {};
+(function() {
+    
+    /**
+     * Method that handles the files that exceeded the maximum size limit
+     * @memberof filesManager
+     * @public
+     * @param {string} file The path of the file that exceeded the maximum weight
+     * @param {ResultCallback} callback Executes callback(err, result) when finished
+     */
+    this.onFileSizeLimit = function(file, callback) {
+        this.unlink(file, callback);
+    };
 
 
+    /**
+     * Method that handles any error in user-uploaded files
+     * @memberof filesManager
+     * @public
+     * @param {Error} err The path of the file that exceeded the maximum weight
+     * @param {Function} next Passes control
+     */
+     this.onError = function(err, next) {
+        //if(error) throw error;
+        next(err);
+    };
 
 
+    /**
+     * Method for delete an user-uploaded file
+     * @memberof filesManager
+     * @public
+     * @param {string} file The path of the file to be deleted
+     * @param {ResultCallback} callback Executes callback(err, result) when finished
+     */
+    this.unlink = function(file, callback) {
+        fs.unlink(path.resolve('./'+file.path), callback);
+    };
 
 
+    /**
+     * Method for read an user-uploaded file
+     * @memberof filesManager
+     * @public
+     * @param {string} file The path of the file to be readed
+     * @param {ResultCallback} callback Executes callback(err, result) when finished. The result is the file converted into a buffer
+     */
+    this.readFile = function(file, callback) {
+        fs.readFile(path.resolve('./'+file.path), function (error, data) {
+            if (error) {
+                callback(error);
+            } else {
+                callback(null, data);
+            }
+        });
+    };
+
+}).apply(filesManager);
 
 
+/**
+ * Callback used by execution methods.
+ * @callback ResultCallback
+ * @param {Error} err Error occurred in the execution of the query.
+ * @param {Object} result Result of the execution of the query.
+ * @param {Array} result.rows Array of rows.
+ */
 
 
-
-
-	
-	
-
-
-
-
-
-    <section class="readme-section">
-        <article><h1>Email &amp; HTML Validator</h1>
-<p>This is an internal project for MRM-BA for validate the emails made by the front-end team.</p>
-<h3>Authors &amp; contributors</h3>
-<ul>
-<li>Juan Pablo Ferrari  <a href="https://github.com/juanpiwi">(juanpiwi)</a>: <a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#106;&#x75;&#x61;&#110;&#112;&#97;&#98;&#x6c;&#111;&#x2e;&#102;&#101;&#114;&#114;&#x61;&#114;&#105;&#x40;&#x6d;&#114;&#109;&#x2d;&#109;&#x63;&#99;&#x61;&#110;&#x6e;&#46;&#99;&#111;&#109;">&#106;&#x75;&#x61;&#110;&#112;&#97;&#98;&#x6c;&#111;&#x2e;&#102;&#101;&#114;&#114;&#x61;&#114;&#105;&#x40;&#x6d;&#114;&#109;&#x2d;&#109;&#x63;&#99;&#x61;&#110;&#x6e;&#46;&#99;&#111;&#109;</a></li>
-<li>Pablo Galano  <a href="https://github.com/pablogalano">(pablogalano)</a>: <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#112;&#97;&#x62;&#x6c;&#111;&#x2e;&#103;&#97;&#108;&#x61;&#110;&#111;&#64;&#109;&#x72;&#109;&#45;&#109;&#99;&#99;&#x61;&#x6e;&#x6e;&#x2e;&#x63;&#111;&#109;">&#112;&#97;&#x62;&#x6c;&#111;&#x2e;&#103;&#97;&#108;&#x61;&#110;&#111;&#64;&#109;&#x72;&#109;&#45;&#109;&#99;&#99;&#x61;&#x6e;&#x6e;&#x2e;&#x63;&#111;&#109;</a></li>
-</ul>
-<h2>Requirements</h2>
-<p>To run &amp; work on this project you need to have the following installed:
-- <a href="http://nodejs.org/">Node.js</a>
-- <a href="http://editorconfig.org/">EditorConfig</a> (if your text editor have support for this)</p>
-<h2>Installation &amp; Configuration</h2>
-<p>Please, follow this steps to install &amp; configure all you need before starting to work on the project:</p>
-<ol>
-<li>Run this to install all the node_modules:<pre><code>$ npm install</code></pre>
-</li>
-<li>Set your configurations on file /config/config.{{NODE_ENV}}.js (where {{NODE_ENV}} is the environment in which you work, and takes one of this values: &quot;local&quot;, &quot;development&quot;, &quot;stage&quot; or &quot;production&quot;)</li>
-</ol>
-<h3>Execution</h3>
-<ul>
-<li>Windows:<pre><code>$ npm start</code></pre>
-</li>
-<li>Unix:<pre><code>$ NODE_ENV=local node server.js</code></pre>
-</li>
-</ul>
-<h3>Test</h3>
-<ul>
-<li>Windows:<pre><code>$ npm test</code></pre>
-</li>
-<li>Unix:<pre><code>$ make test</code></pre>
-</li>
-</ul>
-<h3>Generate Documentation</h3>
-<ul>
-<li>For Application documentation:<pre><code>$ grunt jsdoc:backend</code></pre>
-</li>
-<li>For front-end (public) documentation:<pre><code>$ grunt jsdoc:frontend</code></pre>
-</li>
-</ul></article>
-    </section>
-
-
+module.exports = filesManager;
+</pre>
+	</article>
+</section>
 
 
 
@@ -156,10 +176,6 @@
 				</footer>
 			</div>
 
-			
-			<div class="span3">
-				<div id="toc"></div>
-			</div>
 			
 			<br clear="both">
 		</div>

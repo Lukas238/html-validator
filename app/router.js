@@ -7,27 +7,29 @@ var config = require('./../config/config'),
     options = {};
 
 /**
- * this var contains all the app routes
+ * This object contains all the app routes
  * @type {express.Router}
+ * @author Pablo Galano
  */
 var router = express.Router();
 
 /**
- * this var contains all the app routes
- * @type {express.Router}
+ * Method that contains the HTTP method GET for the root of the app
  */
 router.get('/', function(req, res){
     res.sendStatus(403);
 });
 
-
+/**
+ * Method that contains the HTTP method POST for /validation, which receives the request to validate the file, and returns the validations performed
+ */
 router.post('/validation', function(req, res) {
     var htmlFile = req.files.htmlFile;
     var htmlData;
     async.waterfall(
         [
             function(callback) {
-                htmlData = filesManager.readFile(htmlFile, callback);
+                filesManager.readFile(htmlFile, callback);
             },
             function(data, callback) {
                 htmlData = data;
@@ -49,9 +51,6 @@ router.post('/validation', function(req, res) {
             }
         }
     );
-    //var htmlData = filesManager.readFile(htmlFile);
-    //console.log('----------------'+htmlData);
-    //filesManager.unlink(htmlFile);
 });
 
 

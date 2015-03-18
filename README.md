@@ -19,7 +19,7 @@ Please, follow this steps to install & configure all you need before starting to
 ```
 $ npm install
 ```
-2. Set your configurations on file /config/config.{{NODE_ENV}}.js (where {{NODE_ENV}} is the environment in which you work, and takes one of this values: "local", "dev", "stage" or "prod")
+2. Set your configurations on file /config/config.{{NODE_ENV}}.js (where {{NODE_ENV}} is the environment in which you work, and takes one of this values: "local", "development", "stage" or "production")
 
 
 ###Execution

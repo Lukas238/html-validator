@@ -8,6 +8,7 @@ var config = require('./../config/config'),
 
 
 /**
+ * This object is the specification of the server. Executes express and configures all settings, middlewares & routes controllers
  * @type {express}
  */
 var app = express();
