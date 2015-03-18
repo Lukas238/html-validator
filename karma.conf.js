@@ -1,6 +1,7 @@
 // Karma configuration
 // Generated on Tue Feb 24 2015 11:16:24 GMT-0300 (Hora estándar de Argentina)
 
+
 module.exports = function(config) {
   config.set({
 
@@ -10,7 +11,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['browserify', 'jasmine'],
 
 
     // list of files / patterns to load in the browser
@@ -19,7 +20,7 @@ module.exports = function(config) {
       'public/app/lib/angular/angular-*.js',
       'public/test/lib/angular/angular-mocks.js',
       'public/test/lib/sinon-1.12.2.js',
-      'public/test/lib/jasmine-sinon.js ',          
+      'public/test/lib/jasmine-sinon.js ',               
       'public/app/*.js',
       'public/app/**/*.js',
       'public/app/lib/angular/*.js',                 
@@ -30,16 +31,22 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [       
-        'public/app/lib/angular/angular.1.3.14.min.js',
-        //'public/app/lib/angular/angular-mocks.js' 
-            
+        'public/app/lib/angular/angular.1.3.14.min.js',        
+        'public/app/lib/bundle.js'
     ],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'public/app/**/*.js': ['browserify']
     },
+
+
+    browserify: {
+      debug: true,
+      transform: [ 'brfs' ]
+    },  
 
 
     // test results reporter to use
