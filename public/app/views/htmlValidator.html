@@ -1,11 +1,11 @@
 <div>
     <form name="formFileUpload" novalidate>
         File Upload:
-        <div name="file" class="button" ng-file-select ng-model="files" accept=".html" ng-multiple="false" ng-accept="'*.html'" ng-multiple="false" required>Select Files</div>
+        <div name="file" class="button" ng-file-select ng-model="htmlFile" accept=".html" ng-multiple="false" ng-accept="'*.html'" ng-multiple="false" required>Select Files</div>
 
 
         Drop File:
-        <div ng-file-drop ng-file-select ng-model="files" class="drop-box" drag-over-class="dragover" ng-multiple="false" allow-dir="true" accept=".html" ng-accept="'*.html'">Drop html or images here or click to upload</div>
+        <div ng-file-drop ng-file-select ng-model="htmlFile" class="drop-box" drag-over-class="dragover" ng-multiple="false" allow-dir="true" accept=".html" ng-accept="'*.html'">Drop html or images here or click to upload</div>
         <div ng-no-file-drop>File Drag/Drop is not supported for this browser</div>
 
         <div ng-show="formFileUpload.$submitted || formFileUpload.file.$touched">
@@ -13,11 +13,11 @@
         </div>
 
         <ul>
-            <li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
+            <li ng-repeat="f in htmlFile" style="font:smaller">{{f.name}}</li>
         </ul>
 
         Responsive:
-        <input type="checkbox" ng-model="checkResponsibe" ng-true-value="'YES'" ng-false-value="'NO'">
+        <input type="checkbox" ng-model="isResponsive" ng-true-value="'YES'" ng-false-value="'NO'">
         <br>
         <br>
 

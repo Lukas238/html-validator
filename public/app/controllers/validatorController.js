@@ -10,8 +10,8 @@ angular.module('validatorController', ['validatorService'])
 
             if (form.$valid) {
                 var fileUpload = {
-                    "files": $scope.files,
-                    "checkResponsibe": $scope.checkResponsibe || 'NO'
+                    "htmlFile": $scope.htmlFile,
+                    "isResponsive": $scope.isResponsive || 'NO'
                 }
                 console.log("object", fileUpload);
             }
@@ -19,9 +19,9 @@ angular.module('validatorController', ['validatorService'])
         };
 
 
-        $scope.$watch('files', function() {
+        //$scope.$watch('files', function() {
             //$scope.upload($scope.files);
-        });
+       // });
 
         /*$scope.upload = function(files) {
 
