@@ -26,6 +26,10 @@ router.get('/', function(req, res){
 router.post('/validation', function(req, res) {
     var htmlFile = req.files.htmlFile;
     var htmlData;
+    var validationResult = {
+        valid: true,
+        messages: {}
+    };
     async.waterfall(
         [
             function(callback) {
@@ -47,7 +51,10 @@ router.post('/validation', function(req, res) {
             if (err) {
                 res.sendStatus(500);
             } else {
-                res.sendStatus(200);
+                res
+                    .status(200)
+                    .type('application/json')
+                    .json(validationResult);
             }
         }
     );
