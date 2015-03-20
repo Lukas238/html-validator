@@ -1,7 +1,8 @@
 <div>
-    <form name="formFileUpload" novalidate>
+    <form name="formFileUpload" novalidate enctype="multipart/form-data">
+        
         File Upload:
-        <div name="file" class="button" ng-file-select ng-model="htmlFile" accept=".html" ng-multiple="false" ng-accept="'*.html'" ng-multiple="false" required>Select Files</div>
+        <div name="htmlFile" class="button" ng-file-select ng-model="htmlFile" accept=".html" ng-multiple="false" ng-accept="'*.html'" required>Select Files</div>
 
 
         Drop File:
