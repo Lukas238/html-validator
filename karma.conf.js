@@ -11,7 +11,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['browserify', 'jasmine'],
+    frameworks: ['jasmine'],
 
 
     // list of files / patterns to load in the browser
@@ -31,24 +31,18 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [       
-        'public/app/lib/angular/angular.1.3.14.min.js',        
-        'public/app/lib/bundle.js'
+        'public/app/lib/angular/angular.1.3.14.min.js'
     ],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'public/app/**/*.js': ['browserify']
+      
     },
 
 
-    browserify: {
-      debug: true,
-      transform: [ 'brfs' ]
-    },  
-
-
+    
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter

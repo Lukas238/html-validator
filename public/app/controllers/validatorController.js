@@ -22,7 +22,7 @@ angular.module('validatorController', ['validatorService'])
                 formData.append("htmlFile", $scope.htmlFile);
                 console.log("archivo", $scope.htmlFile)
                 var files = {
-                        formData,
+                        "htmlFile": $scope.htmlFile,
                         "isResponsive": $scope.isResponsive || 'NO'
                     }
                     console.log("file",files);
