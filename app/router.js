@@ -40,7 +40,23 @@ router.post('/validation', function(req, res) {
                 callback(null);
             },
             function(callback) {
-                // TODO: validate the file here
+                // validate the file here
+                async.parallel(
+                    [
+                        function(callbackSeries) {
+                            var htmlValidator = require('./lib/htmlValidator');
+                            htmlValidator.validate(htmlData, callbackSeries);
+                        }
+                    ],
+                    function(err, result) {
+                        if (!err) {
+                            if (result[0]) {
+                                validationResult.valid = false;
+                                validationResult.messages.html = result[0];
+                            }
+                        }
+                    }
+                )
                 callback(null);
             },
             function(callback) {
