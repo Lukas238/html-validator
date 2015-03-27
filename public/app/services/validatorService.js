@@ -9,12 +9,8 @@ angular.module('validatorService', ['mrmConfiguration'])
     var ValidatorService = function() {
 
         this.fileUpload = function(dto) {
-            console.log('data', dto);
             var servicePath = 'validation';
             var url = publicApiPath + servicePath;
-
-            
-
             var req = {
                 method: 'POST',
                 url: url,
@@ -22,13 +18,13 @@ angular.module('validatorService', ['mrmConfiguration'])
                     'Content-Type': undefined
                 },
                 transformRequest: angular.identity,
-                data: dto,
+                data: dto
             }
 
-            return $http(req).success(function(res) {
-                return res.data;
-            }).error(function(data) {
-                return res.data;
+            return $http(req).success(function(data, status) {
+                return  data;
+            }).error(function(data, status) {
+                return data;
             });
 
            

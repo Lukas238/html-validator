@@ -13,7 +13,7 @@ angular.module('validatorController', ['validatorService'])
             };
 
             function fileUploadSuccess(response) {
-                console.log("OK File Upload", response);
+                console.log("OK File Upload", response.data);
             };
 
 
