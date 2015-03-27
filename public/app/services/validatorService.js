@@ -13,33 +13,25 @@ angular.module('validatorService', ['mrmConfiguration'])
             var servicePath = 'validation';
             var url = publicApiPath + servicePath;
 
+            
+
             var req = {
                 method: 'POST',
                 url: url,
                 headers: {
                     'Content-Type': undefined
                 },
+                transformRequest: angular.identity,
                 data: dto,
             }
 
-            return $http(req).success(function(data) {
-                return "OK";
+            return $http(req).success(function(res) {
+                return res.data;
             }).error(function(data) {
-                return "NO OK";
+                return res.data;
             });
 
-            //return fileUploadPromise;
-
-            /*var fileUploadPromise = $http({
-                method: 'POST',
-                url: url,
-                data: dto,
-                withCredentials: true
-            }).then(function(response) {
-                var data = response.data;
-                return data;
-            });*/
-            //return fileUploadPromise;
+           
         };
 
     }

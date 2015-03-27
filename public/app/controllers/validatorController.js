@@ -9,7 +9,7 @@ angular.module('validatorController', ['validatorService'])
         $scope.submitFile = function(form) {
 
             function fileUploadError(response) {
-                console.log("ERROR File Upload 1", response);
+                console.log("ERROR File Upload", response);
             };
 
             function fileUploadSuccess(response) {
@@ -17,16 +17,11 @@ angular.module('validatorController', ['validatorService'])
             };
 
 
-            if (form.$valid) {
-                var formData = new FormData();
-                formData.append("htmlFile", $scope.htmlFile);
-                console.log("archivo", $scope.htmlFile)
-                var files = {
-                        "htmlFile": $scope.htmlFile,
-                        "isResponsive": $scope.isResponsive || 'NO'
-                    }
-                    console.log("file",files);
-                ValidatorService.fileUpload(files).then(fileUploadSuccess, fileUploadError);
+            if (form.$valid) {                
+                var fd = new FormData();
+                fd.append('htmlFile', $scope.htmlFile[0]);
+                fd.append('isResponsive', $scope.isResponsive || 'NO');               
+                ValidatorService.fileUpload(fd).then(fileUploadSuccess, fileUploadError);
             }
 
         };
