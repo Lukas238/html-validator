@@ -5,6 +5,8 @@ angular.module('validatorController', ['validatorService'])
 .controller({
     'HtmlValidatorControler': function($scope, $http, $upload, ValidatorService) {
 
+        $scope.headHtml = ["Type", "Last Line", "Last Column", "First Colum", "Message", "Extract"];
+        //$scope.infoHtml = {};
 
         $scope.submitFile = function(form) {
 
@@ -13,7 +15,9 @@ angular.module('validatorController', ['validatorService'])
             };
 
             function fileUploadSuccess(response) {
-                console.log("OK File Upload", response.data);
+                console.log("OK File Upload");
+                $scope.infoHtml = response.data.messages.html.messages;
+
             };
 
 

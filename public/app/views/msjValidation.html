@@ -1,0 +1,14 @@
+<table id="t01" ng-if="infoHtml">
+    <tr >
+        <th ng-repeat="head in headHtml">{{head}}</th>
+    </tr>
+    <tr ng-repeat="itemValidation in infoHtml">
+        <td>{{itemValidation.type}}</td>
+        <td>{{itemValidation.lastLine}}</td>
+        <td>{{itemValidation.lastColumn}}</td>
+        <td>{{itemValidation.firstColumn}}</td>
+        <td>{{itemValidation.message}}</td>
+        <td>{{itemValidation.extract}}</td>
+    </tr>
+
+</table>
