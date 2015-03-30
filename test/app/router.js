@@ -3,7 +3,8 @@ var request = require('supertest');
 var app = require('./../../app/express');
 
 describe('Testing for Router', function() {
-    
+    this.timeout(0);
+
     describe('GET /', function() {
         it('Should response Forbidden', function(done) {
             request(app)
@@ -29,6 +30,8 @@ describe('Testing for Router', function() {
             .expect('Content-Type', /application\/json/)
             .end(function(err, res) {
                 expect(res.body).to.have.property('valid');
+                expect(res.body).to.have.property('messages');
+                expect(res.body.messages).to.have.property('html');
                 done(err);
             });
         });
