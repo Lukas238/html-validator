@@ -49,15 +49,17 @@ router.post('/validation', function(req, res) {
                         }
                     ],
                     function(err, result) {
-                        if (!err) {
+                        if (err) {
+                            callback(err);
+                        } else {
                             if (result[0]) {
                                 validationResult.valid = false;
                                 validationResult.messages.html = result[0];
                             }
+                            callback(null);
                         }
                     }
-                )
-                callback(null);
+                );
             },
             function(callback) {
                 filesManager.unlink(htmlFile, callback);
