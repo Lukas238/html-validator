@@ -1,6 +1,46 @@
 'use strict';
 
-describe("Testing Upload Controller", function() {
+describe("Testing Validator Controller", function(){
+   beforeEach(module('mrmValidate'));
+
+    var $controller;
+
+    beforeEach(inject(function(_$controller_){
+        $controller = _$controller_;
+    }));
+
+    describe("File Upload", function () {
+       var $scope, $httpBackend, controller, mockFile;
+
+        beforeEach(function(){
+            $scope = {};
+            
+            controller = $controller('HtmlValidatorController', {$scope: $scope});
+            mockFile = {
+                webkitRelativePath: "",
+                lastModified: 1426186387000,
+                lastModifiedDate: "Thu Mar 12 2015 15:53:07 GMT-0300 (Hora estándar de Argentina)",
+                name: "template.html",
+                type: "text/html"
+        };
+        });
+        it("The controller compares against 'undefined'", function () {
+            expect(controller).toBeDefined();
+        });
+
+        it("The file compares against 'undefined' & type compares against 'text/html'", function () {
+           expect(mockFile).toBeDefined();
+           expect(mockFile.type).toEqual("text/html");
+        });
+
+        it("", function () {
+
+        });
+
+    });
+});
+
+/*describe("Testing Upload Controller", function() {
     beforeEach(angular.mock.module('mrmValidate'));
    
     describe("FileUploadController", function() {
@@ -66,3 +106,4 @@ describe("Testing Upload Controller", function() {
     });
 }); 
 
+*/
