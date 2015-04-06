@@ -10,11 +10,11 @@ describe("Testing Validator Controller", function(){
     }));
 
     describe("File Upload", function () {
-       var $scope, $httpBackend, controller, mockFile;
-
+       var $scope, $httpBackend, controller, mockFile, service;
+        var fd = new FormData();
         beforeEach(function(){
             $scope = {};
-            
+
             controller = $controller('HtmlValidatorController', {$scope: $scope});
             mockFile = {
                 webkitRelativePath: "",
@@ -33,77 +33,49 @@ describe("Testing Validator Controller", function(){
            expect(mockFile.type).toEqual("text/html");
         });
 
-        it("", function () {
+        beforeEach(function (){
+
+
+            inject(function(ValidatorService, _$httpBackend_) {
+                service = ValidatorService;
+                $httpBackend = _$httpBackend_;
+            });
+        });
+
+       /* it("", function(){
+            expect(service.fileUpload(fd)).toBeDefined();
+        });*/
+
+        afterEach(function() {
+            $httpBackend.verifyNoOutstandingExpectation();
+            $httpBackend.verifyNoOutstandingRequest();
+        });
+
+
+        it("should make an ajax call to /validation", function () {
+
+            fd.append('htmlFile', mockFile);
+            fd.append('isResponsive', 'NO');
+
+            var returnData = { valid: true, messages: {} };
+            var url = 'http://localhost:3000/validation';
+            $httpBackend.expectPOST(url).respond(returnData);
+            var returnedPromise = service.fileUpload(fd);
+            var result;
+            returnedPromise.then(function(response) {
+                result = response.data;
+            });
+            $httpBackend.flush();
+
+            expect(result instanceof Object).toBeTruthy();
+            expect(result).toEqual(returnData);
+
+
 
         });
+
+
 
     });
 });
 
-/*describe("Testing Upload Controller", function() {
-    beforeEach(angular.mock.module('mrmValidate'));
-   
-    describe("FileUploadController", function() {
-        var $scope, $upload, $rootScope;
-
-        beforeEach(inject(function($injector) {
-            $upload = $injector.get('$upload');
-            $rootScope = $injector.get('$rootScope');
-            $scope = $rootScope.$new();
-
-            var $controller = $injector.get('$controller');
-
-            var createController = function() {
-                return $controller('HtmlValidatorControler', {
-                    '$scope': $scope
-                });
-            };
-            var controller = createController();
-        }));
-
-        describe("UploadFile", function() {
-            var $httpBackend, promise, successCallback, errorCallback, httpController, mockFile;
-            var expectedUrl = 'https://angular-file-upload-cors-srv.appspot.com/upload';
-
-            beforeEach(inject(function($rootScope, $controller, _$httpBackend_) {
-                $httpBackend = _$httpBackend_;
-                var scope = $rootScope.$new();
-                successCallback = jasmine.createSpy();
-                errorCallback = jasmine.createSpy();
-                httpController = $controller('HtmlValidatorControler', {
-                    '$scope': scope
-                });
-                
-                mockFile = {data:"asas",method:"POST",url:expectedUrl,file:[{"name":"File 1", "body":"abcd121212"}]};
-
-            }));
-
-            it("The 'mockFile' & 'httpController' matcher compares against 'undefined'", function () {
-                expect(httpController).toBeDefined();
-
-                expect(mockFile).toBeDefined();               
-
-            });
-
-            it('returns http requests successfully and resolves the promise', function() {
-                
-                var data = '{"success":"true"}';       
-               
-                $httpBackend.expectPOST(expectedUrl).respond(200, data);                
-
-                promise = $upload.upload(mockFile);                
-
-                promise.then(successCallback, errorCallback);
-
-                $httpBackend.flush();
-
-                //expect(successCallback).toHaveBeenCalledWith(angular.fromJson(data));
-
-                expect(errorCallback).not.toHaveBeenCalled();
-            });
-
-        });
-    });
-}); 
-
-*/
