@@ -5,14 +5,14 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         // Generate JS documentation
-        jsdoc: {
+            jsdoc: {
             frontend: {
                 options: {
                     destination: './doc/frontend',
                     template: 'node_modules/grunt-jsdoc/node_modules/ink-docstrap/template',
                     configure: './doc/jsdoc.frontend.conf.json'
                 },
-                src: ['./public/**/*.js']
+                src: ['./public/app/**/*.js']
             },
             backend: {
                 options: {
