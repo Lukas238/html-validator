@@ -24,24 +24,31 @@ angular.module('validatorService', ['mrmConfiguration'])
          */
 
         this.fileUpload = function(dto) {
+
             var servicePath = 'validation';
             var url = publicApiPath + servicePath;
-            var req = {
+            var fileUploadPromise = $http({
                 method: 'POST',
                 url: url,
                 headers: {
                     'Content-Type': undefined
                 },
                 transformRequest: angular.identity,
-                data: dto
-            }
-
-            return $http(req).success(function(data, status) {
-                return  data;
-            }).error(function(data, status) {
-                return data;
+                data: dto,
+                withCredentials: true
+            }).then(function(res) {
+                var arrMsg = res.data.messages.html.messages;
+                var value;
+                var arrData = [];
+                arrMsg.forEach(function(currValue, currIndex){
+                    value = currValue.message.search(/obsolete/i);
+                    if(value < 0)
+                        arrData.push(currValue);
+                });
+                //console.dir(arrData);
+                return  arrData;
             });
-
+            return fileUploadPromise;
            
         };
 

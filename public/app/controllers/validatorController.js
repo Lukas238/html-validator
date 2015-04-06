@@ -33,8 +33,8 @@ angular.module('validatorController', ['validatorService'])
             };
 
             function fileUploadSuccess(response) {
-                console.log("OK File Upload");
-                $scope.infoHtml = response.data.messages.html.messages;
+                console.log("OK File Upload", response);
+                $scope.infoHtml = response;
 
             };
 
