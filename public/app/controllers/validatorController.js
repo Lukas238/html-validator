@@ -3,7 +3,7 @@
 angular.module('validatorController', ['validatorService'])
 
 .controller({
-    'HtmlValidatorControler': function($scope, $http, $upload, ValidatorService) {
+    'HtmlValidatorController': function($scope, $http, $upload, ValidatorService) {
 
         $scope.headHtml = ["Type", "Last Line", "Last Column", "First Colum", "Message", "Extract"];
         //$scope.infoHtml = {};
