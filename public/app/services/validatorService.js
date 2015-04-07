@@ -45,7 +45,7 @@ angular.module('validatorService', ['mrmConfiguration'])
                     if(value < 0)
                         arrData.push(currValue);
                 });
-                
+
                 return  arrData;
             });
             return fileUploadPromise;

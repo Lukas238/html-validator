@@ -23,6 +23,7 @@ var htmlValidator = {};
             });
             data.messages = arrData;
 
+
             return callback(null, data);
         });
     };
