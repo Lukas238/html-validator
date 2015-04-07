@@ -1,4 +1,4 @@
-var assert = require('chai').assert;
+//var testCleanObsolete = require('./../../../app/lib/htmlValidator')
 var dtoMsg = {
     messages: [
         {
@@ -27,11 +27,14 @@ var dtoMsg = {
 };
 
 describe('Testing for htmlValidator', function () {
-    it ('lalalala', function(done){
+    it ('Chai assertions and expects using setup', function(){
         assert.typeOf(dtoMsg,'object', 'dtoMsg is not object');
         expect(dtoMsg).to.have.property('messages');
         assert(Array.isArray(dtoMsg.messages), 'dtoMsg.messages is not Array');
-        done();
 
-    }) ;
+    });
+
+    /*it ('q se yooo', function () {
+        testCleanObsolete.cleanObsolete(dtoMsg.messages);
+    });*/
 });

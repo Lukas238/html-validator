@@ -1,6 +1,18 @@
 var validator = require('html-validator');
 
 var htmlValidator = {};
+
+function cleanObsolete(dtos){
+    var valueAux;
+    var arrData = [];
+    dtos.messages.forEach(function (currValue, currIndex) {
+        valueAux = currValue.message.search(/obsolete/i);
+        if(valueAux < 0)
+            arrData.push(currValue);
+    });
+    return arrData;
+}
+
 (function() {
     
     var options = {
@@ -10,20 +22,11 @@ var htmlValidator = {};
     this.validate = function(fileData, callback) {
         options.data = fileData;
         validator(options, function(err, data){
-            var valueAux;
-            var arrData = [];
+
             if(err) {
                 return callback(null, '');
             }
-
-            data.messages.forEach(function (currValue, currIndex) {
-                valueAux = currValue.message.search(/obsolete/i);
-                if(valueAux < 0)
-                    arrData.push(currValue);
-            });
-            data.messages = arrData;
-
-
+            data.messages = cleanObsolete(data);
             return callback(null, data);
         });
     };
