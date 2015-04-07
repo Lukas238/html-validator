@@ -13,6 +13,8 @@ function cleanObsolete(dtos){
     return arrData;
 }
 
+htmlValidator['cleanObsolete'] = cleanObsolete;
+
 (function() {
     
     var options = {
@@ -26,7 +28,11 @@ function cleanObsolete(dtos){
             if(err) {
                 return callback(null, '');
             }
+
+
             data.messages = cleanObsolete(data);
+
+
             return callback(null, data);
         });
     };
@@ -34,3 +40,5 @@ function cleanObsolete(dtos){
 }).apply(htmlValidator)
 
 module.exports = htmlValidator;
+
+

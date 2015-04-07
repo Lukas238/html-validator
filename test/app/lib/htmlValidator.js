@@ -1,4 +1,5 @@
-//var testCleanObsolete = require('./../../../app/lib/htmlValidator')
+var validator = require('./../../../app/lib/htmlValidator');
+
 var dtoMsg = {
     messages: [
         {
@@ -27,14 +28,15 @@ var dtoMsg = {
 };
 
 describe('Testing for htmlValidator', function () {
-    it ('Chai assertions and expects using setup', function(){
+    it ('Chai assertions and expects using dtoMsg', function(){
         assert.typeOf(dtoMsg,'object', 'dtoMsg is not object');
         expect(dtoMsg).to.have.property('messages');
-        assert(Array.isArray(dtoMsg.messages), 'dtoMsg.messages is not Array');
+        assert(Array.isArray(dtoMsg.messages));
 
     });
 
-    /*it ('q se yooo', function () {
-        testCleanObsolete.cleanObsolete(dtoMsg.messages);
-    });*/
+    it ('should result in one using the return style approach', function () {
+        var result = validator.cleanObsolete(dtoMsg);
+        expect(result.length).to.equal(1);
+    });
 });
