@@ -54,6 +54,11 @@ $ grunt jsdoc:backend
 $ grunt jsdoc:frontend
 ```
 
+###Debugger
+```
+$ npm run-script debug
+```
+
 ###Debugging Express
 - Windows:
 ```

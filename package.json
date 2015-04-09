@@ -17,7 +17,8 @@
   "main": "server.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --ui bdd --reporter spec --require test/helpers/setup --recursive --watch test/app",
-    "start": "set NODE_ENV=local&& node server.js"
+    "start": "set NODE_ENV=local&& node server.js",
+    "debug": "node debug server.js"
   },
   "dependencies": {
     "async": "^0.9.0",
