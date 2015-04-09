@@ -2,6 +2,7 @@ var config = require('./../config/config'),
     path = require('path'),
     favicon = require('serve-favicon'),
     express = require('express'),
+    cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     multer = require('multer'),
     router = require('./router'),
@@ -38,6 +39,7 @@ var app = express();
     }
     // Parsers
     app.use(bodyParser.json()); // for parsing application/json
+    app.use(cookieParser());
     app.use(multer({
         dest: './app/uploads/',
         limits: {
