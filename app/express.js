@@ -1,5 +1,6 @@
 var config = require('./../config/config'),
     path = require('path'),
+    favicon = require('serve-favicon'),
     express = require('express'),
     bodyParser = require('body-parser'),
     multer = require('multer'),
@@ -20,6 +21,8 @@ var app = express();
 
 
 // MIDDLEWARES
+    //favicon in /public
+    app.use(favicon(path.join(__dirname, '../public/app/img/favicon.ico')));
     // Here goes the routing for view the statics assets (only if is enabled in configuration file)
     if (config.viewStaticFiles) {
         app.use('/public', express.static(path.join(__dirname, '../public/app/')));
