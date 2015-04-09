@@ -53,3 +53,13 @@ $ grunt jsdoc:backend
 ```
 $ grunt jsdoc:frontend
 ```
+
+###Debugging Express
+- Windows:
+```
+$ set DEBUG=express:* & node server.js
+```
+- Unix:
+```
+$ DEBUG=express:* node server.js
+```
