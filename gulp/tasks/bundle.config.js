@@ -2,7 +2,7 @@ module.exports = {
     bundle: {
         main: {
             scripts: [
-                './public/app/*.js'
+                './public/app/**/*.js'
             ],
             styles: './public/app/css/*.css'
         },

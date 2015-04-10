@@ -4,9 +4,10 @@ var gulp = require('gulp'),
   bundle = require('gulp-bundle-assets');
  
 gulp.task('bundle', function() {
-  return gulp.src('bundle.config.js')
+   gulp.src('./gulp/tasks/bundle.config.js')
     .pipe(bundle())
-    .pipe(gulp.dest('./public/build/'));
+    .pipe(bundle.results('./public/build'))
+    .pipe(gulp.dest('./public/build'));
 });
 
 /*var gulp = require ('gulp');
