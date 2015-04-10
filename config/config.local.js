@@ -3,7 +3,8 @@ var config = {
     viewCache: false,
     viewStaticFiles: true,
     viewDocumentation: true,
-    requestLogConsole: true
+    requestLogConsole: true,
+    environment: 'development'
 };
 
 module.exports = config;

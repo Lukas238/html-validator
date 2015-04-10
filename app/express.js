@@ -69,7 +69,7 @@ app.use(function(req,res,next){
 //error handlers
 
 //development error handlers
-if(app.get('env') === 'development'){
+if(app.get('env') === config.environment){
     app.use(function (err, req, res, next){
         res.status(err.status || 500);
         res.render('error', {
