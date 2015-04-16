@@ -46,6 +46,10 @@ router.post('/validation', function(req, res) {
                         function(callbackSeries) {
                             var htmlValidator = require('./lib/htmlValidator');
                             htmlValidator.validate(htmlData, callbackSeries);
+                        },
+                        function (callbackSeries) {
+                            var cssValidator = require('./lib/cssValidator.js');
+                            cssValidator.validate(htmlData, callbackSeries);
                         }
                     ],
                     function(err, result) {
