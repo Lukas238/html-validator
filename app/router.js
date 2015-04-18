@@ -50,6 +50,10 @@ router.post('/validation', function(req, res) {
                         function (callbackSeries) {
                             var cssValidator = require('./lib/cssValidator.js');
                             cssValidator.validate(htmlData, callbackSeries);
+                        },
+                        function (callbackSeries){
+                            var customValidator = require('./lib/customValidator');
+                            customValidator.validate(htmlData, callbackSeries);
                         }
                     ],
                     function(err, result) {
