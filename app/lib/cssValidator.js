@@ -26,14 +26,21 @@ var validate = function validate(fileData, callback){
      }
      });
 
-    var css = 'body { font-famil:Arial, Helvetica, sans-serif; font-size:11px; line-height:14px; color:#bababa; -webkit-text-size-adjust:none; } <br>' +
-              'body { font-family:Arial, Helvetica, sans-serif; font-size:11px; line-height:14px; color:#bababa; -webkit-text-size-adjust:none; }'
+    var css = ['body { font-famil:Arial, Helvetica, sans-serif; font-size:11px; line-height:14px; color:#bababa; -webkit-text-size-adjust:none; }',
+              'body { font-family:Arial, Helvetica, sans-serif; font-siz:11px; line-height:14px; color:#bababa; -webkit-text-size-adjust:none; }'].join('\n');
+
+   /* var css = [
+        "body {",
+        "  font-famil:Arial, Helvetica, sans-serif; font-size:11px; line-height:14px; color:#bababa; -webkit-text-size-adjust:none;",
+        "  font-family:Arial, Helvetica, sans-serif; font-siz:1px; line-height:14px; color:#bababa; -webkit-text-size-adjust:none;",
+        "}",
+    ].join('\n');*/
     //console.log('aux', aux);
      validateCss(css, function (err, data) {
      if (err)
      return callback(null, '');
 
-     console.log('css',data.errors);
+     //console.log('css',data.errors);
      return callback (null, data.errors);
 
 
