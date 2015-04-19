@@ -1,8 +1,12 @@
 var Entities = require('html-entities').AllHtmlEntities;
-
+var jsdom = require("jsdom");
 var customValidator = {};
 
 //var fs = require('fs');
+
+
+
+
 
 
 (function () {
@@ -13,23 +17,55 @@ var customValidator = {};
             return entities.encode(entitie);
         });
 
-        /*var Stream = require('stream');
-        var stream = new Stream();
 
-        stream.pipe = function(dest) {
-            dest.write(res);
-            return dest;
-        };
-        var writeFile = fs.createWriteStream('output.txt');
-        stream.pipe(writeFile);
-        return res;*/
 
     };
 
+    this.validateTdImg = function(str){
+
+        jsdom.env(
+            str,
+            ["http://code.jquery.com/jquery.js"],
+            function (errors, window) {
+                var $ = window.jQuery;
+                $('td').each(function(index, value) {
+                    var withTd = $(this).attr("width");
+                    var withImg = $(this).find("img").attr("width");
+                    var srcImg = $(this).find("img").attr("src");
+
+                    if (withTd !== undefined && withImg !== undefined && srcImg != "spacer.gif"){
+                        var alignTd = $(this).attr("align");
+                        var valignTd = $(this).attr("valign");
+                            if(withTd != withImg && (alignTd === undefined || valignTd === undefined)){
+                                console.log('aaaa',alignTd, valignTd, withImg, withTd)
+                            }
+
+
+
+                    }else{
+                        console.log('ok')
+                    }
+
+                });
+
+            }
+        )
+
+    };
+
+
+
     this.validate = function(fileData, callback){
         var data = fileData.toString();
-        var html;
+        var html, html1;
         html = this.htmlEntities(data);
+        html1 = this.validateTdImg(data);
+        data = data.replace(/<br>|< br >|<br >|< br>/gi,"</br>");
+        console.log('ssss', data);
+
+
+
+
 
     };
 }).apply(customValidator);
