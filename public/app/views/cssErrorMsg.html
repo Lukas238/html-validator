@@ -1,0 +1,10 @@
+<table id="t01" ng-if="infoCss">
+    <tr >
+        <th ng-repeat="head in headCSS">{{head}}</th>
+    </tr>
+    <tr ng-repeat="itemValidation in infoCss">
+        <td>{{itemValidation.line}}</td>
+        <td>{{itemValidation.message + " --- " + itemValidation.skippedstring}}</td>
+    </tr>
+
+</table>
