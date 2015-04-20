@@ -57,12 +57,14 @@ router.post('/validation', function(req, res) {
                         }*/
                     ],
                     function(err, result) {
+                        console.log("result",result);
                         if (err) {
                             callback(err);
                         } else {
                             if (result[0]) {
                                 validationResult.valid = false;
                                 validationResult.messages.html = result[0];
+                                validationResult.messages.css = result[1];
                             }
                             callback(null);
                         }
