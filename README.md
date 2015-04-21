@@ -4,6 +4,7 @@ This is an internal project for MRM-BA for validate the emails made by the front
 ###Authors & contributors
 - Juan Pablo Ferrari  [(juanpiwi)](https://github.com/juanpiwi): <juanpablo.ferrari@mrm-mccann.com>
 - Pablo Galano  [(pablogalano)](https://github.com/pablogalano): <pablo.galano@mrm-mccann.com>
+- Pablo Ortiz [(pablo19)] (https://github.com/pablo19): <pablo.ortiz@mrm-mccann.com>
 
 
 ##Requirements

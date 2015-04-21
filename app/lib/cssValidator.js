@@ -46,7 +46,7 @@ var validate = function validate(fileData, callback){
             result.push(row);
         });
 
-        console.log("Error", result);
+        //console.log("Error", result);
         return callback (null, result);
 
 
