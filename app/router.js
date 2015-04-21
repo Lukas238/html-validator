@@ -25,6 +25,7 @@ router.get('/', function(req, res){
  */
 router.post('/validation', function(req, res) {
     var htmlFile = req.files.htmlFile;
+    var responsiveFile = 'Yes';
     var htmlData;
     var validationResult = {
         valid: true,
@@ -53,7 +54,7 @@ router.post('/validation', function(req, res) {
                         },
                         function (callbackSeries) {
                             var responsiveValidator = require('./lib/responsiveValidator.js');
-                            responsiveValidator.validate(htmlData, callbackSeries);
+                            responsiveValidator.validate(htmlData, responsiveFile, callbackSeries);
                         }/*,
                         function (callbackSeries){
                             var customValidator = require('./lib/customValidator');
