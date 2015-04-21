@@ -1,14 +1,17 @@
 html{background-color: #f5f3f3; height: 100% }
+body {background-color: #F2F2F2;font-size:13px; padding:0; margin: 0; height: 100%; font-family: 'Ubuntu', sans-serif; }
 h1{ color: #fffffe; font-size: 34px; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; font-family: 'Ubuntu', sans-serif; }
 h2{ color: #e5c2f9; font-size: 20px; font-family: 'Ubuntu', sans-serif; }
 
 header #top { background-color: #fff; box-sizing: border-box; height: 60px; padding: 0 20px; width: 100%; }
 header #mainHeader { background: #4e2e83 url('../img/header.jpg') center top no-repeat; box-sizing: border-box; height: 237px; padding-top: 50px; width: 100%; }
 
-body .wrapper { width: 100%; max-width: 900px; margin: 0 auto; }
+body .wrapper { width: 100%; max-width: 960px; margin: 0 auto; }
 header #mainHeader .wrapper { overflow: hidden; }
-#main { background-color: #f5f3f3; }
-#main h4{ font-size: 36px; color:#000; margin-top: 20px; }
+#main { background-color: #fff; border-radius: 3px; margin: 30px auto; border: 1px solid #dddddd; padding: 20px; }
+#main h4{ font-size: 24px; color:#44567C; font-weight: bold; margin-top: 20px; font-family: 'Ubuntu'; }
+#main h5{ font-size: 14px; color:#44567C; font-family: 'Ubuntu'; font-weight: bold; display: inline-block; }
+input[type=checkbox]{ width: 20px; height: 20px; position: relative; top: 5px; }
 
 .button {
     -moz-appearance: button;
@@ -22,14 +25,20 @@ header #mainHeader .wrapper { overflow: hidden; }
     width: 100px;
 }
 .drop-box {
-    background: #F8F8F8;
-    border: 5px dashed #DDD;
-    width: 200px;
-    height: 85px;
-    text-align: center;
-    padding-top: 25px;
-    margin: 10px;
+      background: #F8F8F8;
+      border: 5px dashed #DDD;
+      width: 98%;
+      height: 115px;
+      text-align: center;
+      padding-top: 42px;
+      margin: 10px;
+      box-sizing: border-box;
 }
 .dragover {
-    border: 5px dashed blue;
+    border: 5px dashed #44567C;
 }
+.btn-gray{ color: #D8D8D8; background-color: rgb(118, 141, 135); border-color: rgb(86, 105, 99);   text-shadow: rgb(43, 102, 94) 0px 1px 0px; }
+.btn-gray:hover{ background-color:#6c7c7c; color: #FFF; }
+.label{ font-size: 13px; font-weight: normal; }
+.active .label-success{ color: #5cb85c!important; font-weight: bold; }
+.active .label-danger{ color: #d9534f!important; font-weight: bold; }
