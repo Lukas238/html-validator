@@ -1,11 +1,11 @@
 <div>
     <form name="formFileUpload" novalidate enctype="multipart/form-data">
         
-        File Upload:
-        <div name="htmlFile" class="button" ng-file-select ng-model="htmlFile" accept=".html" ng-multiple="false" ng-accept="'*.html'" required>Select Files</div>
+        <h4>File Upload:</h4>
+        <div name="htmlFile" class="btn btn-gray" ng-file-select ng-model="htmlFile" accept=".html" ng-multiple="false" ng-accept="'*.html'" required><span class="glyphicon glyphicon-file" aria-hidden="true"></span>Select Files</div>
 
 
-        Drop File:
+        <h4>Drop File:</h4>
         <div ng-file-drop ng-file-select ng-model="htmlFile" class="drop-box" drag-over-class="dragover" ng-multiple="false" allow-dir="true" accept=".html" ng-accept="'*.html'">Drop html or images here or click to upload</div>
         <div ng-no-file-drop>File Drag/Drop is not supported for this browser</div>
 
@@ -21,17 +21,43 @@
             <li ng-repeat="f in htmlFile" style="font:smaller">{{f.name}}</li>
         </ul>
 
-        Responsive:
+        <h5>Responsive:</h5>
         <input type="checkbox" ng-model="isResponsive" ng-true-value="'YES'" ng-false-value="'NO'">
         <br>
         <br>
 
-        <button type="submit" ng-click="submitFile(formFileUpload)">Enviar</button>
+        <button type="submit" ng-click="submitFile(formFileUpload)" class="btn btn-primary">Enviar</button>
 
     </form>
 
 </div>
+
 <br><br>
-<ng-include src="'views/msjValidation.html'"></ng-include>
-<br><br>
-<ng-include src="'views/cssErrorMsg.html'"></ng-include>
+
+<div role="tabpanel">
+
+  <!-- Nav tabs -->
+  <ul id="myTab" class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#html" aria-controls="html" role="tab" data-toggle="tab" target="_self" class="label label-success">HTML</a></li>
+    <li role="presentation"><a href="#css" aria-controls="css" role="tab" data-toggle="tab" target="_self" class="label label-danger">CSS</a></li>
+    <li role="presentation"><a href="#responsive" aria-controls="responsive" role="tab" data-toggle="tab" target="_self" class="label label-success">Responsive</a></li>
+    <li role="presentation"><a href="#custom" aria-controls="custom" role="tab" data-toggle="tab" target="_self" class="label label-danger">Custom</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="html">
+        <ng-include src="'views/msjValidation.html'"></ng-include>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="css">
+        <ng-include src="'views/cssErrorMsg.html'"></ng-include>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="responsive">
+        <p>Tres Tres Tres Tres Tres Tres Tres Tres Tres Tres Tres Tres Tres Tres Tres Tres Tres</p>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="custom">
+        <p>Cuatro Cuatro Cuatro Cuatro Cuatro Cuatro Cuatro Cuatro Cuatro Cuatro Cuatro Cuatro Cuatro</p>
+    </div>
+  </div>
+
+</div>
