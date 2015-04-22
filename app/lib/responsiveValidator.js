@@ -8,6 +8,7 @@ function validate (fileData, responsiveData, callback){
         var fileHtml = fileData.toString();
         $ = cheerio.load(fileHtml);
         var str = [];
+        var errorResponsive = [];
         var doctype = new RegExp('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">','i');
         var xmlns = new RegExp('<html xmlns="http://www.w3.org/1999/xhtml">','i');
         var metaViewport = new RegExp('<meta name="viewport" content="width=device-width, initial-scale=1" />','i');
@@ -30,21 +31,47 @@ function validate (fileData, responsiveData, callback){
         str.push({name : 'meta-content', regExp: metaContent});
 
         str.forEach (function (currValue, currIndex){
-            console.log('test '+currValue.name, currValue.regExp.test(fileHtml) );
+            var valueTest = currValue.regExp.test(fileHtml);
+            if (valueTest === false){
+                var errorTest = {
+                    quantity : 1,
+                    type : currValue.name,
+                    msg : ''
+                };
+                errorResponsive.push(errorTest);
+            }
+
         });
 
         arrBodyStyle.forEach(function (value, index){
             value = new RegExp(value,'i');
-            console.log('body style', value.test(bodyStyle));
+            var valueTest = value.test(bodyStyle);
+            if (valueTest === false){
+                var errorTest = {
+                    quantity : 1,
+                    type : value,
+                    msg : ''
+                };
+                errorResponsive.push(errorTest);
+            }
         });
 
         var testContent = new RegExp(targetDensityDpi,'i');
 
-        console.log('meta vieport', testContent.test(strTargetDensityDpi));
+        if(testContent.test(strTargetDensityDpi) === false){
+            var errorTest = {
+                quantity : 1,
+                type : targetDensityDpi,
+                msg : ''
+            };
+            errorResponsive.push(errorTest);
+        }
 
 
 
-        return callback(null, '');
+        //var classClasp = new RegExp('^[class*]$','g');
+        console.log('responsive', errorResponsive);
+        return callback(null, errorResponsive);
     }else{
         return callback (null, '')
     }

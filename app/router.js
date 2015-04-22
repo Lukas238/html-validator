@@ -66,10 +66,12 @@ router.post('/validation', function(req, res) {
                         if (err) {
                             callback(err);
                         } else {
-                            if (result[0] || result[1]) {
+                            if (result[0] || result[1] || result[2]) {
                                 validationResult.valid = false;
                                 validationResult.messages.html = result[0];
                                 validationResult.messages.css = result[1];
+                                validationResult.messages.responsive = result[2];
+
                             }
                             callback(null);
                         }
