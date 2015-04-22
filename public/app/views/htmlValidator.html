@@ -1,5 +1,5 @@
 <div>
-    <form name="formFileUpload" novalidate enctype="multipart/form-data">
+    <form name="formFileUpload" novalidate enctype="multipart/form-data" ng-show="showForm">
         
         <h4>File Upload:</h4>
         <div name="htmlFile" class="btn btn-gray" ng-file-select ng-model="htmlFile" accept=".html" ng-multiple="false" ng-accept="'*.html'" required><span class="glyphicon glyphicon-file" aria-hidden="true"></span>Select Files</div>
@@ -13,7 +13,7 @@
             <div ng-show="formFileUpload.htmlFile.$error.required" class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span>
-                Selecciones un archivo
+                Debes seleccionar un archivo.
             </div>
         </div>
 
@@ -30,6 +30,14 @@
 
     </form>
 
+    <div ng-show="showBack">
+        <button type="submit" ng-click="backButton()" class="btn btn-warning">Volver</button>
+
+        <ul id="nameFile">
+            <li ng-repeat="f in htmlFile" style="font:smaller">{{f.name}}</li>
+        </ul>
+    </div>
+
 </div>
 
 <br><br>
@@ -40,7 +48,7 @@
   <ul id="myTab" class="nav nav-tabs" role="tablist" ng-show="showTab">
     <li role="presentation" class="active"><a href="#html" aria-controls="html" role="tab" data-toggle="tab" target="_self" ng-class="infoHtml.length > 0 ? 'label label-danger' : 'label label-success'">HTML</a></li>
     <li role="presentation"><a href="#css" aria-controls="css" role="tab" data-toggle="tab" target="_self" ng-class="infoCss.length > 0 ? 'label label-danger' : 'label label-success'">CSS</a></li>
-    <li role="presentation"><a href="#responsive" aria-controls="responsive" role="tab" data-toggle="tab" target="_self" ng-class="infoResponsive.length > 0 ? 'label label-danger' : 'label label-success'">Responsive</a></li>
+    <li role="presentation"><a href="#responsive" aria-controls="responsive" role="tab" data-toggle="tab" target="_self" ng-class="infoResponsive.length > 0 ? 'label label-danger' : 'label label-success'" ng-hide="isResponsive == 'NO'">Responsive</a></li>
     <li role="presentation"><a href="#custom" aria-controls="custom" role="tab" data-toggle="tab" target="_self" ng-class="infoCustom.length > 0 ? 'label label-danger' : 'label label-success'">Custom</a></li>
   </ul>
 
@@ -56,7 +64,7 @@
         <ng-include src="'views/responsiveErrorMsg.html'"></ng-include>
     </div>
     <div role="tabpanel" class="tab-pane" id="custom">
-        <p>Cuatro Cuatro Cuatro Cuatro Cuatro Cuatro Cuatro Cuatro Cuatro Cuatro Cuatro Cuatro Cuatro</p>
+        <ng-include src="'views/defaultMsg.html'"></ng-include>
     </div>
   </div>
 

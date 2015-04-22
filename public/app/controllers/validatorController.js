@@ -21,6 +21,8 @@ angular.module('validatorController', ['validatorService'])
         $scope.headCSS = ["Line", "Message"];
         $scope.headResponsive = ["Quantity", "Type", "Message"];
         $scope.showTab = false;
+        $scope.showBack = false;
+        $scope.showForm = true;
         /**
          * @name $scope.submitFile
          * @function
@@ -41,6 +43,8 @@ angular.module('validatorController', ['validatorService'])
                 $scope.infoCss =  response.css;
                 $scope.infoResponsive = response.responsive;
                 $scope.infoCustom = {};
+                $scope.showForm = false;
+                $scope.showBack = true;
 
             };
 
@@ -53,6 +57,16 @@ angular.module('validatorController', ['validatorService'])
             }
 
         };
+
+        $scope.backButton = function() {
+            $scope.showForm = true;
+            $scope.showBack = false;
+            $scope.showTab = false;
+            $scope.isResponsive = '';
+            $scope.htmlFile = '';
+            $scope.formFileUpload.$submitted = false;
+
+        }
 
 
 
