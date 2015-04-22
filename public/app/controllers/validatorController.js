@@ -40,6 +40,7 @@ angular.module('validatorController', ['validatorService'])
                 $scope.infoHtml = response.html.messages;
                 $scope.infoCss =  response.css;
                 $scope.infoResponsive = response.responsive;
+                $scope.infoCustom = {};
 
             };
 
