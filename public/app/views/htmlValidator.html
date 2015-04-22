@@ -37,7 +37,7 @@
 <div role="tabpanel">
 
   <!-- Nav tabs -->
-  <ul id="myTab" class="nav nav-tabs" role="tablist">
+  <ul id="myTab" class="nav nav-tabs" role="tablist" ng-show="showTab">
     <li role="presentation" class="active"><a href="#html" aria-controls="html" role="tab" data-toggle="tab" target="_self" class="label label-success">HTML</a></li>
     <li role="presentation"><a href="#css" aria-controls="css" role="tab" data-toggle="tab" target="_self" class="label label-danger">CSS</a></li>
     <li role="presentation"><a href="#responsive" aria-controls="responsive" role="tab" data-toggle="tab" target="_self" class="label label-success">Responsive</a></li>
@@ -45,7 +45,7 @@
   </ul>
 
   <!-- Tab panes -->
-  <div class="tab-content" ng-if="">
+  <div class="tab-content" ng-show="showTab">
     <div role="tabpanel" class="tab-pane active" id="html">
         <ng-include src="'views/htmlErrorMsg.html'"></ng-include>
     </div>

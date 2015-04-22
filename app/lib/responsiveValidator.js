@@ -70,7 +70,7 @@ function validate (fileData, responsiveData, callback){
 
 
         //var classClasp = new RegExp('^[class*]$','g');
-        console.log('responsive', errorResponsive);
+        //console.log('responsive', errorResponsive);
         return callback(null, errorResponsive);
     }else{
         return callback (null, '')
