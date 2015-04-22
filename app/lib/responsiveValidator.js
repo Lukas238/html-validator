@@ -67,22 +67,10 @@ function validate (fileData, responsiveData, callback){
                 'result' : 'undefined'
             },
             {
-                'expression' : '',
-                'str' : fileHtml,
-                'result' : 'undefined'
-            },
-            {
-                'expression' : '',
-                'str' : fileHtml,
-                'result' : 'undefined'
-            },
-            {
-                'expression' : '',
+                'expression' : '\\[class=".*"\\]',
                 'str' : fileHtml,
                 'result' : 'undefined'
             }
-
-
 
         ];
 
