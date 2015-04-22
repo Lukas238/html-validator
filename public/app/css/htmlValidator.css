@@ -5,6 +5,6 @@ table#t01 tr:nth-child(odd) {
     background-color:#fff;
 }
 table#t01 th	{
-    background-color: black;
+    background-color: rgb(93, 70, 112);
     color: white;
 }
