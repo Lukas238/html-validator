@@ -1,0 +1,11 @@
+<table id="t01" ng-if="infoCss">
+    <tr >
+        <th ng-repeat="head in headResponsive">{{head}}</th>
+    </tr>
+    <tr ng-repeat="itemValidation in infoResponsive">
+        <td>{{itemValidation.quantity}}</td>
+        <td>{{itemValidation.type}}</td>
+        <td>{{itemValidation.msg}}</td>
+    </tr>
+
+</table>

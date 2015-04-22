@@ -19,6 +19,7 @@ angular.module('validatorController', ['validatorService'])
 
         $scope.headHtml = ["Type", "Last Line", "Last Column", "First Colum", "Message", "Extract"];
         $scope.headCSS = ["Line", "Message"];
+        $scope.headResponsive = ["Quantity", "Type", "Message"];
 
         /**
          * @name $scope.submitFile
@@ -37,6 +38,7 @@ angular.module('validatorController', ['validatorService'])
                 console.log("OK File Upload", response);
                 $scope.infoHtml = response.html.messages;
                 $scope.infoCss =  response.css;
+                $scope.infoResponsive = response.responsive;
 
             };
 
