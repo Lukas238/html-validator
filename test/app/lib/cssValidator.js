@@ -66,7 +66,7 @@ describe('Testing for Css Validator', function() {
         //Expects block not to throw an error
         assert.doesNotThrow(function() {
             testValidator.validate(testFileData, function(err,data) {
-               
+
                 assert.deepEqual(data, testResult); // will not fail assert.doesNotThrow
                 done(); // call "done()" the parameter
             }, function(err) {
