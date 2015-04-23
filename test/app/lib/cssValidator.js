@@ -29,15 +29,26 @@ var testFileData = '<html> \n' +
     '</table> \n' +
     '</body> \n' +
     '</html>';
-var testCallback = function (err) {
-    var args = Array.prototype.slice.call(arguments, 1);
-    if (args.length <= 1) {
-        args = args[0];
-    }
-    //callback.call(null, err, args);
-};
 
-describe('Testing for cssValidator', function() {
+var testResult = [
+    {
+        "line": "8",
+        "skippedstring": "block",
+        "message": "Property displa doesn't exist :"
+    },
+    {
+        "line": "13",
+        "skippedstring": "Arial, Helvetica, sans-serif",
+        "message": "Parse Error"
+    },
+    {
+        "line": "19",
+        "skippedstring": "0p",
+        "message": "Value Error :  font-size (nullfonts.html#propdef-font-size)\n        \n                                Unknown dimension"
+    }
+];
+
+describe('Testing for Css Validator', function() {
     it('Testing module css-validator', function () {
 
         validateCss({text: 'a { color: blue; }'}, function (err, data) {
@@ -49,29 +60,25 @@ describe('Testing for cssValidator', function() {
     });
 
     it('Testing method validate', function (done) {
+
+        assert.isArray(testResult);
+
+        //Expects block not to throw an error
         assert.doesNotThrow(function() {
             testValidator.validate(testFileData, function(err,data) {
-                assert.equal(data, '{Object ... }'); // will not fail assert.doesNotThrow
+               
+                assert.deepEqual(data, testResult); // will not fail assert.doesNotThrow
                 done(); // call "done()" the parameter
             }, function(err) {
                 if (err) throw err; // will fail the assert.doesNotThrow
                 done(); // call "done()" the parameter
             });
         });
-        /*testValidator.validate(testFileData, function (res){
-            assert.equal(res, null);
-            done();
-        })*/
-        //console.log('dddd', testValidator.validate (testFileData, testCallback))
-        //assert.deepEqual(testValidator.validate (testFileData), []);
-        //done()
+
+
+
     });
 });
 
 
-/*styleRegex [ 'style="font-size:0px; line-height:0px;"',
- 'style="display:block;"' ]
 
- [ '"font-size:0px; line-height:0px;"' ]
-
- font-size:0px; line-height:0px;*/
