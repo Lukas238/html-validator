@@ -1,7 +1,5 @@
-var testValidator = require('./../../../app/lib/cssValidator.js');
-var validateCss = require('css-validator');
-var regExp1 = /(style ="|style="|style= ").*?"/g;
-var regExp2 = /".*?"/g;
+var testValidator = require('./../../../app/lib/responsiveValidator.js');
+var testCheerio = require('cheerio');
 var testFileData = '<html> \n' +
     '<body style="padding:0; margin:0; background-color:#5c5c5c;" > \n' +
     '<table width="650" cellpadding="0" cellspacing="0" border="0" bgcolor="#5c5c5c" align="center" class=""> \n' +
@@ -30,55 +28,17 @@ var testFileData = '<html> \n' +
     '</body> \n' +
     '</html>';
 
-var testResult = [
-    {
-        "line": "8",
-        "skippedstring": "block",
-        "message": "Property displa doesn't exist :"
-    },
-    {
-        "line": "13",
-        "skippedstring": "Arial, Helvetica, sans-serif",
-        "message": "Parse Error"
-    },
-    {
-        "line": "19",
-        "skippedstring": "0p",
-        "message": "Value Error :  font-size (nullfonts.html#propdef-font-size)\n        \n                                Unknown dimension"
-    }
-];
 
-describe('Testing for Css Validator', function() {
-    it('Test module css-validator', function () {
 
-        validateCss({text: 'a { color: blue; }'}, function (err, data) {
-            assert.strictEqual(data.validity, true);
-            assert.deepEqual(data.errors, []);
-            assert.deepEqual(data.warnings, []);
-        });
+$ = testCheerio.load(testFileData);
 
+
+describe('Testing for Responsive Validator', function (){
+    it('Test module cheerio', function () {
+        assert.isFunction($);
     });
 
-    it('Test method validate', function (done) {
-
-        assert.isArray(testResult);
-
-        //Expects block not to throw an error
-        assert.doesNotThrow(function() {
-            testValidator.validate(testFileData, function(err,data) {
-
-                assert.deepEqual(data, testResult); // will not fail assert.doesNotThrow
-                done(); // call "done()" the parameter
-            }, function(err) {
-                if (err) throw err; // will fail the assert.doesNotThrow
-                done(); // call "done()" the parameter
-            });
-        });
-
-
+    it('Test method validate', function () {
 
     });
-});
-
-
-
+})
