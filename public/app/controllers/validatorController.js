@@ -15,7 +15,7 @@ angular.module('validatorController', ['validatorService'])
      * @param $upload
      * @param ValidatorService
      */
-    'HtmlValidatorController': function($scope, $http, $upload, ValidatorService) {
+    'HtmlValidatorController': function($scope, $http, $upload, $route, ValidatorService) {
 
         $scope.headHtml = ["Type", "Last Line", "Last Column", "First Colum", "Message", "Extract"];
         $scope.headCSS = ["Line", "Message"];
@@ -23,6 +23,7 @@ angular.module('validatorController', ['validatorService'])
         $scope.showTab = false;
         $scope.showBack = false;
         $scope.showForm = true;
+        $scope.isResponsive = 'NO';
         /**
          * @name $scope.submitFile
          * @function
@@ -59,12 +60,13 @@ angular.module('validatorController', ['validatorService'])
         };
 
         $scope.backButton = function() {
-            $scope.showForm = true;
+            /*$scope.showForm = true;
             $scope.showBack = false;
             $scope.showTab = false;
-            $scope.isResponsive = '';
+            $scope.isResponsive = 'NO';
             $scope.htmlFile = '';
-            $scope.formFileUpload.$submitted = false;
+            $scope.formFileUpload.$submitted = false;*/
+            $route.reload();
 
         }
 
