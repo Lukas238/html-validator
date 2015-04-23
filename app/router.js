@@ -25,7 +25,7 @@ router.get('/', function(req, res){
  */
 router.post('/validation', function(req, res) {
     var htmlFile = req.files.htmlFile;
-    var responsiveFile = 'Yes';
+    var responsiveFile = req.body.isResponsive;
     var htmlData;
     var validationResult = {
         valid: true,

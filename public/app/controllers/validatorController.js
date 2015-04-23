@@ -64,8 +64,9 @@ angular.module('validatorController', ['validatorService'])
             if (form.$valid) {
                 $scope.start();
                 var fd = new FormData();
+                fd.append('isResponsive', $scope.isResponsive);
                 fd.append('htmlFile', $scope.htmlFile[0]);
-                fd.append('isResponsive', $scope.isResponsive || 'NO');               
+
                 ValidatorService.fileUpload(fd).then(fileUploadSuccess, fileUploadError);
             }
 

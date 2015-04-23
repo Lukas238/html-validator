@@ -2,8 +2,7 @@ var cheerio = require('cheerio');
 var responsiveValidator = {};
 
 function validate (fileData, responsiveData, callback){
-    responsiveData = 'YES';
-    //console.log('responsive', responsiveData);
+
     if(responsiveData.toUpperCase() === 'YES'){
         var fileHtml = fileData.toString();
         $ = cheerio.load(fileHtml);

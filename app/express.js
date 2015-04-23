@@ -39,7 +39,7 @@ var app = express();
     }
     // Parsers
     app.use(bodyParser.json()); // for parsing application/json
-    app.use(bodyParser.urlencoded({ extended: false }));  //This object will contain key-value pairs, where the value can be a string or array
+    app.use(bodyParser.urlencoded({ extended: true }));  //This object will contain key-value pairs, where the value can be a string or array
     app.use(cookieParser());
     app.use(multer({
         dest: './app/uploads/',
