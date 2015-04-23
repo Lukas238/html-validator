@@ -19,7 +19,7 @@ angular.module('validatorController', ['validatorService'])
 
         $scope.headHtml = ["Type", "Last Line", "Last Column", "First Colum", "Message", "Extract"];
         $scope.headCSS = ["Line", "Message"];
-        $scope.headResponsive = ["Quantity", "Type", "Message"];
+        $scope.headResponsive = ["Message", "Type"];
         $scope.showTab = false;
         $scope.showBack = false;
         $scope.showForm = true;

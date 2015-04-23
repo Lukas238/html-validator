@@ -4,10 +4,13 @@ var responsiveValidator = {};
 function validate (fileData, responsiveData, callback){
 
     if(responsiveData.toUpperCase() === 'YES'){
+
         var fileHtml = fileData.toString();
         $ = cheerio.load(fileHtml);
         var bodyStyle = $('body').attr('style');
         var strTargetDensityDpi = $("meta[name='viewport']").attr('content');
+        var style = $('style').html();
+
         var errorResponsive = [];
         var validateExp = [
             {
@@ -67,7 +70,7 @@ function validate (fileData, responsiveData, callback){
             },
             {
                 'expression' : '\\[class=".*"\\]',
-                'str' : fileHtml,
+                'str' : style,
                 'result' : 'undefined'
             }
 
@@ -78,9 +81,9 @@ function validate (fileData, responsiveData, callback){
             currValue.result = regExp.test(currValue.str);
             if (typeof currValue.result !== 'undefined' && currValue.result === false){
                 var errorTest = {
-                    quantity : 1,
+                    //quantity : 1,
                     type : currValue.expression,
-                    msg : ''
+                    msg : 'Not Found'
                 };
                 errorResponsive.push(errorTest);
             }
