@@ -4,7 +4,7 @@
  *
  * @namespace mrmValidate
  */
-var mrmApp = angular.module('mrmValidate', ['ngRoute', 'ngSanitize', 'angularFileUpload', 'validatorController']);
+var mrmApp = angular.module('mrmValidate', ['ngRoute', 'ngSanitize', 'angularFileUpload', 'validatorController', 'angular-loading-bar', 'ngAnimate', 'cfp.loadingBar', 'chieffancypants.loadingBar']);
 
 
 

@@ -15,7 +15,7 @@ angular.module('validatorController', ['validatorService'])
      * @param $upload
      * @param ValidatorService
      */
-    'HtmlValidatorController': function($scope, $http, $upload, $route, ValidatorService) {
+    'HtmlValidatorController': function($scope, $http, $upload, $route, ValidatorService, cfpLoadingBar) {
 
         $scope.headHtml = ["Type", "Last Line", "Last Column", "First Colum", "Message", "Extract"];
         $scope.headCSS = ["Line", "Message"];
@@ -31,10 +31,20 @@ angular.module('validatorController', ['validatorService'])
          * @description
          * @param form
          */
+
+        $scope.start = function() {
+          cfpLoadingBar.start();
+        };
+
+        $scope.complete = function () {
+          cfpLoadingBar.complete();
+        }
+
         $scope.submitFile = function(form) {
 
             function fileUploadError(response) {
                 console.log("ERROR File Upload", response);
+                $scope.complete();
             };
 
             function fileUploadSuccess(response) {
@@ -46,11 +56,13 @@ angular.module('validatorController', ['validatorService'])
                 $scope.infoCustom = {};
                 $scope.showForm = false;
                 $scope.showBack = true;
+                $scope.complete();
 
             };
 
 
-            if (form.$valid) {                
+            if (form.$valid) {
+                $scope.start();
                 var fd = new FormData();
                 fd.append('htmlFile', $scope.htmlFile[0]);
                 fd.append('isResponsive', $scope.isResponsive || 'NO');               
