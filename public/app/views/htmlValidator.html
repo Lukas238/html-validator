@@ -49,22 +49,22 @@
     <li role="presentation" class="active"><a href="#html" aria-controls="html" role="tab" data-toggle="tab" target="_self" ng-class="infoHtml.length > 0 ? 'label label-danger' : 'label label-success'">HTML</a></li>
     <li role="presentation"><a href="#css" aria-controls="css" role="tab" data-toggle="tab" target="_self" ng-class="infoCss.length > 0 ? 'label label-danger' : 'label label-success'">CSS</a></li>
     <li role="presentation"><a href="#responsive" aria-controls="responsive" role="tab" data-toggle="tab" target="_self" ng-class="infoResponsive.length > 0 ? 'label label-danger' : 'label label-success'" ng-hide="isResponsive == 'NO'">Responsive</a></li>
-    <li role="presentation"><a href="#custom" aria-controls="custom" role="tab" data-toggle="tab" target="_self" ng-class="infoCustom.length > 0 ? 'label label-danger' : 'label label-success'">Custom</a></li>
+    <li role="presentation" ng-hide="true"><a href="#custom" aria-controls="custom" role="tab" data-toggle="tab" target="_self" ng-class="infoCustom.length > 0 ? 'label label-danger' : 'label label-success'">Custom</a></li>
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content" ng-show="showTab">
     <div role="tabpanel" class="tab-pane active" id="html">
-        <ng-include src="'views/htmlErrorMsg.html'"></ng-include>
+        <ng-include src="infoHtml.length > 0 ? 'views/htmlErrorMsg.html' : 'views/defaultMsg.html'"></ng-include>
     </div>
     <div role="tabpanel" class="tab-pane" id="css">
-        <ng-include src="'views/cssErrorMsg.html'"></ng-include>
+        <ng-include src="infoCss.length > 0 ? 'views/cssErrorMsg.html' : 'views/defaultMsg.html'"></ng-include>
     </div>
     <div role="tabpanel" class="tab-pane" id="responsive">
-        <ng-include src="'views/responsiveErrorMsg.html'"></ng-include>
+        <ng-include src="infoResponsive.length > 0 ? 'views/responsiveErrorMsg.html' : 'views/defaultMsg.html'"></ng-include>
     </div>
     <div role="tabpanel" class="tab-pane" id="custom">
-        <ng-include src="'views/defaultMsg.html'"></ng-include>
+        <ng-include src="infoCustom.length > 0 ? 'views/customErrorMsg.html' : 'views/defaultMsg.html'"></ng-include>
     </div>
   </div>
 

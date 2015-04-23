@@ -47,3 +47,34 @@ ul li{ list-style: none; margin-top: 20px; font-weight: 700; font-style: italic;
 .active .label-danger{ color: #d9534f!important; font-weight: bold; }
 .alert-success{ font-size: 14px; font-weight: bold; }
 .alert-success .glyphicon{ font-size: 16px; }
+.tableResponsive{ table-layout: fixed; }
+.tableResponsive tr td{   text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+
+
+/*
+ * BAR CONFIG
+ */
+
+#loading-bar .bar {
+  background: #21CF79;
+  height: 5px;
+}
+#loading-bar-spinner{
+  top: 15px;
+  left: 15px;
+}
+#loading-bar-spinner .spinner-icon {
+  border: solid 3px transparent;
+  border-top-color:  #21CF79;
+  border-left-color: #21CF79;
+  width: 30px;
+  height: 30px;
+  border-radius: 14px;
+}
+#loading-bar .peg {
+  -moz-box-shadow: #21CF79 2px 1px 8px 1px;
+  -ms-box-shadow: #21CF79 2px 1px 8px 1px;
+  -webkit-box-shadow: #21CF79 2px 1px 8px 1px;
+  box-shadow: #21CF79 2px 1px 8px 1px;
+  height: 5px;
+}

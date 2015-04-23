@@ -15,7 +15,7 @@ angular.module('validatorController', ['validatorService'])
      * @param $upload
      * @param ValidatorService
      */
-    'HtmlValidatorController': function($scope, $http, $upload, ValidatorService) {
+    'HtmlValidatorController': function($scope, $http, $upload, $route, ValidatorService, cfpLoadingBar) {
 
         $scope.headHtml = ["Type", "Last Line", "Last Column", "First Colum", "Message", "Extract"];
         $scope.headCSS = ["Line", "Message"];
@@ -23,6 +23,7 @@ angular.module('validatorController', ['validatorService'])
         $scope.showTab = false;
         $scope.showBack = false;
         $scope.showForm = true;
+        $scope.isResponsive = 'NO';
         /**
          * @name $scope.submitFile
          * @function
@@ -30,10 +31,20 @@ angular.module('validatorController', ['validatorService'])
          * @description
          * @param form
          */
+
+        $scope.start = function() {
+          cfpLoadingBar.start();
+        };
+
+        $scope.complete = function () {
+          cfpLoadingBar.complete();
+        }
+
         $scope.submitFile = function(form) {
 
             function fileUploadError(response) {
                 console.log("ERROR File Upload", response);
+                $scope.complete();
             };
 
             function fileUploadSuccess(response) {
@@ -45,11 +56,13 @@ angular.module('validatorController', ['validatorService'])
                 $scope.infoCustom = {};
                 $scope.showForm = false;
                 $scope.showBack = true;
+                $scope.complete();
 
             };
 
 
-            if (form.$valid) {                
+            if (form.$valid) {
+                $scope.start();
                 var fd = new FormData();
                 fd.append('htmlFile', $scope.htmlFile[0]);
                 fd.append('isResponsive', $scope.isResponsive || 'NO');               
@@ -59,12 +72,13 @@ angular.module('validatorController', ['validatorService'])
         };
 
         $scope.backButton = function() {
-            $scope.showForm = true;
+            /*$scope.showForm = true;
             $scope.showBack = false;
             $scope.showTab = false;
-            $scope.isResponsive = '';
+            $scope.isResponsive = 'NO';
             $scope.htmlFile = '';
-            $scope.formFileUpload.$submitted = false;
+            $scope.formFileUpload.$submitted = false;*/
+            $route.reload();
 
         }
 
