@@ -29,7 +29,7 @@ function validate (fileData, responsiveData, callback){
                 'result' : 'undefined'
             },
             {
-                'expression' : '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>',
+                'expression' : '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"',
                 'str' : fileHtml,
                 'result' : 'undefined'
             },
