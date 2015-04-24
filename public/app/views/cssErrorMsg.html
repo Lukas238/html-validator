@@ -1,4 +1,4 @@
-<table id="t01" ng-if="infoCss" class="table">
+<table id="t01" ng-if="infoCss != 'Error'" class="table">
     <tr >
         <th ng-repeat="head in headCSS">{{head}}</th>
     </tr>
@@ -8,3 +8,12 @@
     </tr>
 
 </table>
+
+
+<div ng-if="infoCss == 'Error'">
+    <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Actualmente Css Validator está fuera de servicio, disculpe las molestias.
+    </div>
+</div>
