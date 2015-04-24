@@ -30,10 +30,12 @@ var testFileData = '<html> \n' +
     '</body> \n' +
     '</html>';
 
+//-    "skippedstring": "\n                                block\n"
+
 var testResult = [
     {
         "line": "8",
-        "skippedstring": "block",
+       "skippedstring": "block",
         "message": "Property displa doesn't exist :"
     },
     {
