@@ -5,9 +5,20 @@ var customValidator = {};
 function validateCustom (fileData, callback){
     var fileHtml = fileData.toString();
     var characters = "^|`|~|¢|£|¤|¥|¦|§|¨|©|ª|«|¬|®|¯|°|±|²|³|µ|¶|·|¹|º|»|¼|½|¾|¿|À|Á|Â|Ã|Ä|Å|Æ|Ç|È|É|Ê|Ë|Ì|Í|Î|Ï|Ð|Ñ|Ò|Ó|Ô|Õ|Ö|×|Ø|Ù|Ú|Û|Ü|Ý|Þ|ß|à|á|â|ã|ä|å|æ|ç|è|é|ê|ë|ì|í|î|ï|ð|ñ|ò|ó|ô|õ|ö|÷|ø|ù|ú|û|ü|ý|þ|ÿ|Ā|ā|Ă|ă|Ą|ą|Ć|ć|Ĉ|ĉ|Ċ|ċ|Č|č|Ď|Đ|đ|Ē|ē|Ĕ|ĕ|Ė|ė|Ę|ę|Ě|ě|Ĝ|ĝ|Ğ|ğ|Ġ|ġ|Ģ|ģ|Ĥ|ĥ|Ħ|ħ|Ĩ|ĩ|Ī|ī|Ĭ|ĭ|Į|į|İ|ı|Ĳ|ĳ|Ĵ|ĵ|Ķ|ķ|ĸ|Ĺ|ĺ|Ļ|ļ|Ľ|ľ|Ŀ|ŀ|Ł|ł|Ń|ń|Ņ|ņ|Ň|ň|ŉ|Ŋ|ŋ|Ō|ō|Ŏ|ŏ|Ő|ő|Œ|œ|Ŕ|ŕ|Ŗ|ŗ|Ř|ř|Ś|ś|Ŝ|ŝ|Ş|ş|Š|š|Ţ|ţ|Ť|ť|Ŧ|ŧ|Ũ|ũ|Ū|ū|Ŭ|ŭ|Ů|ů|Ű|ű|Ų|ų|Ŵ|ŵ|Ŷ|ŷ|Ÿ|Ź|ź|Ż|ż|Ž|ž|ſ|ƀ|Ɓ|Ƃ|ƃ|Ƅ|ƅ|Ɔ|Ƈ|ƈ|Ɖ|Ɗ|Ƌ|ƌ|ƍ|Ǝ|Ə|Ɛ|Ƒ|ƒ|™";
+    var tracking = "&lt;DI_TRACKING_CODE\\/&gt|&lt;DI_TRACKING_CODE\\/>|<DI_TRACKING_CODE\\/&gt;|&lt;DI_MEMBER_ATTR/&gt;";
+
+
     var validateExp = [
         {
             'expression' : characters,
+            'str' : fileHtml,
+            'operation' : 'match',
+            'value' : false,
+            'result' : 'undefined',
+            'msg' : ''
+        },
+        {
+            'expression' : tracking,
             'str' : fileHtml,
             'operation' : 'match',
             'value' : false,
@@ -18,10 +29,12 @@ function validateCustom (fileData, callback){
     var errorMsg = [];
 
     validateExp.forEach(function (currValue, currIndex){
+        //console.log('index', currIndex)
         var regExp;
         switch (currValue.operation){
             case 'match':
                 regExp = new RegExp(currValue.expression,'gi');
+                console.log('aaaaaaaa', regExp)
                 currValue.result = currValue.str.match(regExp);
                 break;
         }
