@@ -20,6 +20,7 @@ angular.module('validatorController', ['validatorService'])
         $scope.headHtml = ["Type", "Last Line", "Last Column", "First Colum", "Message", "Extract"];
         $scope.headCSS = ["Line", "Message"];
         $scope.headResponsive = ["Message", "Type"];
+        $scope.headCustom = ["Message"];
         $scope.showTab = false;
         $scope.showBack = false;
         $scope.showForm = true;
@@ -53,7 +54,7 @@ angular.module('validatorController', ['validatorService'])
                 $scope.infoHtml = response.html.messages;
                 $scope.infoCss =  response.css;
                 $scope.infoResponsive = response.responsive;
-                $scope.infoCustom = {};
+                $scope.infoCustom = response.custom;
                 $scope.showForm = false;
                 $scope.showBack = true;
                 $scope.complete();

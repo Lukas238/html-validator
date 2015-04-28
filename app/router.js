@@ -55,22 +55,23 @@ router.post('/validation', function(req, res) {
                         function (callbackSeries) {
                             var responsiveValidator = require('./lib/responsiveValidator.js');
                             responsiveValidator.validate(htmlData, responsiveFile, callbackSeries);
-                        }/*,
+                        },
                         function (callbackSeries){
                             var customValidator = require('./lib/customValidator');
                             customValidator.validate(htmlData, callbackSeries);
-                        }*/
+                        }
                     ],
                     function(err, result) {
 
                         if (err) {
                             callback(err);
                         } else {
-                            if (result[0] || result[1] || result[2]) {
+                            if (result[0] || result[1] || result[2] || result[3]) {
                                 validationResult.valid = false;
                                 validationResult.messages.html = result[0];
                                 validationResult.messages.css = result[1];
                                 validationResult.messages.responsive = result[2];
+                                validationResult.messages.custom = result[3];
 
                             }
                             callback(null);
