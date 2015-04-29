@@ -33,10 +33,12 @@ function validateCustom (fileData, callback){
     var tracking = "&lt;DI_TRACKING_CODE\\/&gt|&lt;DI_TRACKING_CODE\\/>|<DI_TRACKING_CODE\\/&gt;|&lt;DI_MEMBER_ATTR/&gt;";
     var tagPartialHtml = "<span|<\\/span>|<a|<\\/a>|<td|<\\/td>";
     var tagBr = "<br>|< br >|<br >|< br>";
+    var tagHtml = "<HTML|<A|<ABBR|<ACRONYM|<ADDRESS|<APPLET|<AREA|<ARTICLE|<ASIDE|<AUDIO|<B|<BASE|<BASEFONT|<BDI|<BDO|<BIG|<BLOCKQUOTE|<BODY|<BUTTON|<CANVAS|<CAPTION|<CENTER|<CITE|<CODE|<COL|<COLGROUP|<DATALIST|<DD|<DEL|<DETAILS|<DFN|<DIALOG|<DIR|<DIV|<DL|<DT|<EM|<EMBED|<FIELDSET|<FIGCAPTION|<FIGURE|<FONT|<FOOTER|<FORM|<FRAME|<FRAMESET|<H1|<H2|<H3|<H4|<H5|<H6|<HEAD|<HEADER|<HR|<HTML|<I|<IFRAME|<IMG|<INPUT|<INS|<KBD|<KEYGEN|<LABEL|<LEGEND|<LI|<LINK|<MAIN|<MAP|<MARK|<MENU|<MENUITEM|<META|<METER|<NAV|<NOFRAMES|<NOSCRIPT|<OBJECT|<OL|<OPTGROUP|<OPTION|<OUTPUT|<P|<PARAM|<PRE|<PROGRESS|<Q|<RP|<RT|<RUBY|<S|<SAMP|<SCRIPT|<SECTION|<SELECT|<SMALL|<SOURCE|<SPAN|<STRIKE|<STRONG|<STYLE|<SUB|<SUMMARY|<SUP|<TABLE|<TBODY|<TD|<TEXTAREA|<TFOOT|<TH|<THEAD|<TIME|<TITLE|<TR|<TRACK|<TT|<U|<UL|<VAR|<VIDEO|<WBR|HTML>|A>|ABBR>|ACRONYM>|ADDRESS>|APPLET>|AREA>|ARTICLE>|ASIDE>|AUDIO>|B>|BASE>|BASEFONT>|BDI>|BDO>|BIG>|BLOCKQUOTE>|BODY>|BUTTON>|CANVAS>|CAPTION>|CENTER>|CITE>|CODE>|COL>|COLGROUP>|DATALIST>|DD>|DEL>|DETAILS>|DFN>|DIALOG>|DIR>|DIV>|DL>|DT>|EM>|EMBED>|FIELDSET>|FIGCAPTION>|FIGURE>|FONT>|FOOTER>|FORM>|FRAME>|FRAMESET>|H1>|H2>|H3>|H4>|H5>|H6>|HEAD>|HEADER>|HR>|HTML>|I>|IFRAME>|IMG>|INPUT>|INS>|KBD>|KEYGEN>|LABEL>|LEGEND>|LI>|LINK>|MAIN>|MAP>|MARK>|MENU>|MENUITEM>|META>|METER>|NAV>|NOFRAMES>|NOSCRIPT>|OBJECT>|OL>|OPTGROUP>|OPTION>|OUTPUT>|P>|PARAM>|PRE>|PROGRESS>|Q>|RP>|RT>|RUBY>|S>|SAMP>|SCRIPT>|SECTION>|SELECT>|SMALL>|SOURCE>|SPAN>|STRIKE>|STRONG>|STYLE>|SUB>|SUMMARY>|SUP>|TABLE>|TBODY>|TD>|TEXTAREA>|TFOOT>|TH>|THEAD>|TIME>|TITLE>|TR>|TRACK>|TT>|U>|UL>|VAR>|VIDEO>|WBR>";
 
     var validateExp = [
         {
             'expression' : characters,
+            'option' : 'gi',
             'str' : fileHtml,
             'operation' : 'match',
             'value' : false,
@@ -45,6 +47,7 @@ function validateCustom (fileData, callback){
         },
         {
             'expression' : tracking,
+            'option' : 'gi',
             'str' : fileHtml,
             'operation' : 'match',
             'value' : false,
@@ -53,6 +56,7 @@ function validateCustom (fileData, callback){
         },
         {
             'expression' : tagPartialHtml,
+            'option' : 'gi',
             'str' : fileHtml,
             'operation' : 'match',
             'value' : false,
@@ -61,6 +65,16 @@ function validateCustom (fileData, callback){
         },
         {
             'expression' : tagBr,
+            'option' : 'gi',
+            'str' : fileHtml,
+            'operation' : 'match',
+            'value' : false,
+            'result' : 'undefined',
+            'msg' : ''
+        },
+        {
+            'expression' : tagHtml,
+            'option' : 'g',
             'str' : fileHtml,
             'operation' : 'match',
             'value' : false,
@@ -75,7 +89,7 @@ function validateCustom (fileData, callback){
         var regExp;
         switch (currValue.operation){
             case 'match':
-                regExp = new RegExp(currValue.expression,'gi');
+                regExp = new RegExp(currValue.expression, currValue.option);
                 console.log('aaaaaaaa', regExp)
                 currValue.result = currValue.str.match(regExp);
                 break;
