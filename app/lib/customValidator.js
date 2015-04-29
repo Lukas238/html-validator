@@ -24,6 +24,35 @@ function validateTdImg(){
 
 };
 
+function validateTdWebkitTextSize(strFile){
+    var acum = 0;
+    var webK = "-webkit-text-size-adjust";
+    var regExp;
+    regExp = new RegExp(webK, 'gi');
+    var resultWebK = strFile.match(regExp);
+    var message = '';
+
+    $('td').each(function(index, value) {
+        
+        var styleTd = $(this).attr("style");
+        var wkInTd = styleTd.match(regExp);
+        if (wkInTd !== undefined){
+            acum++;
+        }
+
+    });
+
+    var resultWk = (resultWebK.length) - acum;
+    if(resultWk > 0){
+        message = 'Hay ' +resultWk+ ' propiedades "-webkit-text-size-adjust" mal definidas en el documento';
+    }else{
+        message = 'Las propiedades "-webkit-text-size-adjust" están definidas correctamente';
+    }
+
+    return message;
+
+};
+
 
 
 function validateCustom (fileData, callback){
@@ -35,6 +64,7 @@ function validateCustom (fileData, callback){
     var tagBr = "<br>|< br >|<br >|< br>";
     var tagHtml = "<HTML|<A|<ABBR|<ACRONYM|<ADDRESS|<APPLET|<AREA|<ARTICLE|<ASIDE|<AUDIO|<B|<BASE|<BASEFONT|<BDI|<BDO|<BIG|<BLOCKQUOTE|<BODY|<BUTTON|<CANVAS|<CAPTION|<CENTER|<CITE|<CODE|<COL|<COLGROUP|<DATALIST|<DD|<DEL|<DETAILS|<DFN|<DIALOG|<DIR|<DIV|<DL|<DT|<EM|<EMBED|<FIELDSET|<FIGCAPTION|<FIGURE|<FONT|<FOOTER|<FORM|<FRAME|<FRAMESET|<H1|<H2|<H3|<H4|<H5|<H6|<HEAD|<HEADER|<HR|<HTML|<I|<IFRAME|<IMG|<INPUT|<INS|<KBD|<KEYGEN|<LABEL|<LEGEND|<LI|<LINK|<MAIN|<MAP|<MARK|<MENU|<MENUITEM|<META|<METER|<NAV|<NOFRAMES|<NOSCRIPT|<OBJECT|<OL|<OPTGROUP|<OPTION|<OUTPUT|<P|<PARAM|<PRE|<PROGRESS|<Q|<RP|<RT|<RUBY|<S|<SAMP|<SCRIPT|<SECTION|<SELECT|<SMALL|<SOURCE|<SPAN|<STRIKE|<STRONG|<STYLE|<SUB|<SUMMARY|<SUP|<TABLE|<TBODY|<TD|<TEXTAREA|<TFOOT|<TH|<THEAD|<TIME|<TITLE|<TR|<TRACK|<TT|<U|<UL|<VAR|<VIDEO|<WBR|HTML>|A>|ABBR>|ACRONYM>|ADDRESS>|APPLET>|AREA>|ARTICLE>|ASIDE>|AUDIO>|B>|BASE>|BASEFONT>|BDI>|BDO>|BIG>|BLOCKQUOTE>|BODY>|BUTTON>|CANVAS>|CAPTION>|CENTER>|CITE>|CODE>|COL>|COLGROUP>|DATALIST>|DD>|DEL>|DETAILS>|DFN>|DIALOG>|DIR>|DIV>|DL>|DT>|EM>|EMBED>|FIELDSET>|FIGCAPTION>|FIGURE>|FONT>|FOOTER>|FORM>|FRAME>|FRAMESET>|H1>|H2>|H3>|H4>|H5>|H6>|HEAD>|HEADER>|HR>|HTML>|I>|IFRAME>|IMG>|INPUT>|INS>|KBD>|KEYGEN>|LABEL>|LEGEND>|LI>|LINK>|MAIN>|MAP>|MARK>|MENU>|MENUITEM>|META>|METER>|NAV>|NOFRAMES>|NOSCRIPT>|OBJECT>|OL>|OPTGROUP>|OPTION>|OUTPUT>|P>|PARAM>|PRE>|PROGRESS>|Q>|RP>|RT>|RUBY>|S>|SAMP>|SCRIPT>|SECTION>|SELECT>|SMALL>|SOURCE>|SPAN>|STRIKE>|STRONG>|STYLE>|SUB>|SUMMARY>|SUP>|TABLE>|TBODY>|TD>|TEXTAREA>|TFOOT>|TH>|THEAD>|TIME>|TITLE>|TR>|TRACK>|TT>|U>|UL>|VAR>|VIDEO>|WBR>";
     var tel = "^tel:\\+[0-9]*$";
+    var algo = "<html|<\\/html>|<body>|<\\/body>";
 
     var validateExp = [
         {
@@ -82,6 +112,15 @@ function validateCustom (fileData, callback){
             'result' : 'undefined',
             'msg' : ''
         },
+        {
+            'expression' : algo,
+            'option' : 'g',
+            'str' : fileHtml,
+            'operation' : 'match',
+            'value' : false,
+            'result' : 'undefined',
+            'msg' : ''
+        },
         /*{
             'expression' : tel,
             'option' : 'g',
@@ -100,7 +139,7 @@ function validateCustom (fileData, callback){
         switch (currValue.operation){
             case 'match':
                 regExp = new RegExp(currValue.expression, currValue.option);
-                console.log('aaaaaaaa', regExp)
+                //console.log('aaaaaaaa', regExp)
                 currValue.result = currValue.str.match(regExp);
                 break;
         }
@@ -124,13 +163,15 @@ function validateCustom (fileData, callback){
                 });
 
                 currValue.msg = message;
-                console.log('res', errorMsg);
+                //console.log('res', errorMsg);
             }
         }
     });
 
     var msgTdImg = 'Hay '+ validateTdImg() + ' sin declarar align y valign';
     errorMsg.push(msgTdImg);
+
+    errorMsg.push(validateTdWebkitTextSize(fileHtml));
 
     callback (null, errorMsg);
 
