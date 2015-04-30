@@ -56,6 +56,7 @@ function validateTdWebkitTextSize(strFile){
 
 };
 
+
 function widthTable (strFile) {
     var width;
     var message ='';
@@ -78,6 +79,22 @@ function widthTable (strFile) {
     return message;
 }
 
+
+
+function validateImgVspace(){
+    var acum = 0;
+    var message = '';
+    $('img').each(function(index, value) {
+        var imgVspace = $(this).attr("vspace");
+        if (imgVspace !== undefined){
+            acum++;
+        }
+    });
+    if(acum > 0){
+        message = 'Hay ' +acum+ ' vspace mal declarados en atributos IMG';
+        return message;
+    }
+}
 
 
 function validateCustom (fileData, callback){
@@ -196,7 +213,11 @@ function validateCustom (fileData, callback){
     var msgTdImg = 'Hay '+ validateTdImg() + ' sin declarar align y valign';
     errorMsg.push(msgTdImg);
     errorMsg.push(validateTdWebkitTextSize(fileHtml));
+
     errorMsg.push(widthTable(fileHtml));
+
+    errorMsg.push(validateImgVspace());
+
 
     callback (null, errorMsg);
 
