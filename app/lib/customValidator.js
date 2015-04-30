@@ -98,6 +98,26 @@ function validateImgVspace(){
     return message;
 }
 
+function validateTel (strFile){
+    var tel = new RegExp("^tel:\\+[0-9]*$");
+    var value;
+    var acum = 0;
+    var patt = new RegExp("tel");
+    $('a').each(function (){
+        value = $(this).attr('href');
+        if(value !== undefined){
+            if (patt.test(value) === true){
+                console.log('Siiii');
+                if(tel.test(value) === false){
+                    acum++
+                }
+            }
+        }
+
+    });
+
+    return 'Hay ' + acum + ' teléfonos que no tienen la estructura correspondiente (tel:+numero)';
+}
 
 function validateCustom (fileData, callback){
     var fileHtml = fileData.toString();
@@ -107,7 +127,7 @@ function validateCustom (fileData, callback){
     var tagPartialHtml = "<span|<\\/span>|<a|<\\/a>|<td|<\\/td>";
     var tagBr = "<br>|< br >|<br >|< br>";
     var tagHtml = "<HTML|<A|<ABBR|<ACRONYM|<ADDRESS|<APPLET|<AREA|<ARTICLE|<ASIDE|<AUDIO|<B|<BASE|<BASEFONT|<BDI|<BDO|<BIG|<BLOCKQUOTE|<BODY|<BUTTON|<CANVAS|<CAPTION|<CENTER|<CITE|<CODE|<COL|<COLGROUP|<DATALIST|<DD|<DEL|<DETAILS|<DFN|<DIALOG|<DIR|<DIV|<DL|<DT|<EM|<EMBED|<FIELDSET|<FIGCAPTION|<FIGURE|<FONT|<FOOTER|<FORM|<FRAME|<FRAMESET|<H1|<H2|<H3|<H4|<H5|<H6|<HEAD|<HEADER|<HR|<HTML|<I|<IFRAME|<IMG|<INPUT|<INS|<KBD|<KEYGEN|<LABEL|<LEGEND|<LI|<LINK|<MAIN|<MAP|<MARK|<MENU|<MENUITEM|<META|<METER|<NAV|<NOFRAMES|<NOSCRIPT|<OBJECT|<OL|<OPTGROUP|<OPTION|<OUTPUT|<P|<PARAM|<PRE|<PROGRESS|<Q|<RP|<RT|<RUBY|<S|<SAMP|<SCRIPT|<SECTION|<SELECT|<SMALL|<SOURCE|<SPAN|<STRIKE|<STRONG|<STYLE|<SUB|<SUMMARY|<SUP|<TABLE|<TBODY|<TD|<TEXTAREA|<TFOOT|<TH|<THEAD|<TIME|<TITLE|<TR|<TRACK|<TT|<U|<UL|<VAR|<VIDEO|<WBR|HTML>|A>|ABBR>|ACRONYM>|ADDRESS>|APPLET>|AREA>|ARTICLE>|ASIDE>|AUDIO>|B>|BASE>|BASEFONT>|BDI>|BDO>|BIG>|BLOCKQUOTE>|BODY>|BUTTON>|CANVAS>|CAPTION>|CENTER>|CITE>|CODE>|COL>|COLGROUP>|DATALIST>|DD>|DEL>|DETAILS>|DFN>|DIALOG>|DIR>|DIV>|DL>|DT>|EM>|EMBED>|FIELDSET>|FIGCAPTION>|FIGURE>|FONT>|FOOTER>|FORM>|FRAME>|FRAMESET>|H1>|H2>|H3>|H4>|H5>|H6>|HEAD>|HEADER>|HR>|HTML>|I>|IFRAME>|IMG>|INPUT>|INS>|KBD>|KEYGEN>|LABEL>|LEGEND>|LI>|LINK>|MAIN>|MAP>|MARK>|MENU>|MENUITEM>|META>|METER>|NAV>|NOFRAMES>|NOSCRIPT>|OBJECT>|OL>|OPTGROUP>|OPTION>|OUTPUT>|P>|PARAM>|PRE>|PROGRESS>|Q>|RP>|RT>|RUBY>|S>|SAMP>|SCRIPT>|SECTION>|SELECT>|SMALL>|SOURCE>|SPAN>|STRIKE>|STRONG>|STYLE>|SUB>|SUMMARY>|SUP>|TABLE>|TBODY>|TD>|TEXTAREA>|TFOOT>|TH>|THEAD>|TIME>|TITLE>|TR>|TRACK>|TT>|U>|UL>|VAR>|VIDEO>|WBR>";
-    var tel = "^tel:\\+[0-9]*$";
+
     var algo = "<html|<\\/html>|<body>|<\\/body>";
 
     var validateExp = [
@@ -219,6 +239,8 @@ function validateCustom (fileData, callback){
     errorMsg.push(widthTable(fileHtml));
 
     errorMsg.push(validateImgVspace());
+
+    errorMsg.push(validateTel(fileHtml));
 
 
     callback (null, errorMsg);
