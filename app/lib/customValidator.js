@@ -92,8 +92,10 @@ function validateImgVspace(){
     });
     if(acum > 0){
         message = 'Hay ' +acum+ ' vspace mal declarados en atributos IMG';
-        return message;
+    }else{
+        message = 'No hay vspace mal declarados!';
     }
+    return message;
 }
 
 
