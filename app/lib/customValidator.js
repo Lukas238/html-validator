@@ -35,10 +35,13 @@ function validateTdWebkitTextSize(strFile){
     $('td').each(function(index, value) {
         
         var styleTd = $(this).attr("style");
-        var wkInTd = styleTd.match(regExp);
-        if (wkInTd !== undefined){
-            acum++;
+        if(styleTd !== undefined){
+            var wkInTd = styleTd.match(regExp);
+            if (wkInTd !== undefined){
+                acum++;
+            }
         }
+
 
     });
 
