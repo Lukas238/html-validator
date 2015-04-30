@@ -33,7 +33,7 @@ function validateTdWebkitTextSize(strFile){
     var message = '';
 
     $('td').each(function(index, value) {
-        
+
         var styleTd = $(this).attr("style");
         if(styleTd !== undefined){
             var wkInTd = styleTd.match(regExp);
@@ -55,6 +55,28 @@ function validateTdWebkitTextSize(strFile){
     return message;
 
 };
+
+function widthTable (strFile) {
+    var width;
+    var message ='';
+    var acum1 = 0;
+    var acum2 = 0;
+    $('table').each(function (){
+        width = $(this).attr('width');
+        if(width !== undefined){
+            if(width.trim().length == 0){
+                acum1++;
+            }
+        }else{
+            acum2++
+        }
+
+    });
+
+    message += 'Hay ' + acum1 + ' propiedad width que esta definida pero no tiene asignado un tamaño \n';
+    message += 'Hay ' + acum2 + ' propiedad width que no esta definida en la tabla';
+    return message;
+}
 
 
 
@@ -125,14 +147,14 @@ function validateCustom (fileData, callback){
             'msg' : ''
         },
         /*{
-            'expression' : tel,
-            'option' : 'g',
-            'str' : fileHtml,
-            'operation' : 'match',
-            'value' : false,
-            'result' : 'undefined',
-            'msg' : ''
-        }*/
+         'expression' : tel,
+         'option' : 'g',
+         'str' : fileHtml,
+         'operation' : 'match',
+         'value' : false,
+         'result' : 'undefined',
+         'msg' : ''
+         }*/
     ];
     var errorMsg = [];
 
@@ -173,8 +195,8 @@ function validateCustom (fileData, callback){
 
     var msgTdImg = 'Hay '+ validateTdImg() + ' sin declarar align y valign';
     errorMsg.push(msgTdImg);
-
     errorMsg.push(validateTdWebkitTextSize(fileHtml));
+    errorMsg.push(widthTable(fileHtml));
 
     callback (null, errorMsg);
 
