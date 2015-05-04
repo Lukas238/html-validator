@@ -35,8 +35,9 @@ function validateTdWebkitTextSize(strFile){
     $('td').each(function(index, value) {
 
         var styleTd = $(this).attr("style");
-        var textTd = $(this).text();
-        if(styleTd !== undefined && textTd !== undefined){
+        var textTd = $(this).find('span').text();
+        console.log(textTd);
+        if(styleTd !== undefined && textTd !== ''){
             var wkInTd = styleTd.match(regExp);
             if (wkInTd !== undefined){
                 acum++;
@@ -120,6 +121,31 @@ function validateImgCaracters(chars){
         message = 'Hay ' +acum+ ' imagenes con caracteres invalidos en la etiqueta src';
     }else{
         message = 'Las imagenes tienen la etiqueta src declarada correctamente';
+    }
+    return message;
+}
+
+function validateAmpersandHref(){
+    var acum = 0;
+    var message = '';
+    var text = '&amp;|&#38;'
+    var regExp = new RegExp(text, 'gi');
+    $('a').each(function(index, value) {
+        var aHref = $(this).attr("href");
+        console.log(aHref);
+        if(aHref !== undefined){
+            var resultAHref = aHref.match(regExp);
+            if(resultAHref != null){
+                acum++;
+            }
+        }
+    });
+    if(acum == 1){
+        message = 'El siguiente caracter "$" esta codificado en '+acum+' propiedad href';
+    }else if(acum > 0){
+        message = 'El siguiente caracter "$" esta codificado en '+acum+' propiedades href';
+    }else{
+        message = 'No hay "$" codificados en propiedades href';
     }
     return message;
 }
@@ -247,6 +273,8 @@ function validateCustom (fileData, callback){
     errorMsg.push(validateImgVspace());
     
     errorMsg.push(validateImgCaracters(characters));
+
+    errorMsg.push(validateAmpersandHref());
 
 
     callback (null, errorMsg);
