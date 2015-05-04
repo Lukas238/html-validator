@@ -20,7 +20,9 @@ function validateTdImg(){
         }
 
     });
-    return acum;
+
+    return 'Hay '+ acum + ' sin declarar align y valign';
+
 
 };
 
@@ -36,7 +38,7 @@ function validateTdWebkitTextSize(strFile){
 
         var styleTd = $(this).attr("style");
         var textTd = $(this).find('span').text();
-        console.log(textTd);
+       // console.log(textTd);
         if(styleTd !== undefined && textTd !== ''){
             var wkInTd = styleTd.match(regExp);
             if (wkInTd !== undefined){
@@ -141,7 +143,7 @@ function validateImgCaracters(chars){
         var imgSrc = $(this).attr("src");
         if(imgSrc !== undefined){
             var resultImgSrc = imgSrc.match(regExp);
-            console.log('aa',  imgSrc, resultImgSrc)
+            //console.log('aa',  imgSrc, resultImgSrc)
             if (resultImgSrc != null || imgSrc.length == 0){
                 acum++;
             }
@@ -164,7 +166,7 @@ function validateAmpersandHref(){
     var regExp = new RegExp(text, 'gi');
     $('a').each(function(index, value) {
         var aHref = $(this).attr("href");
-        console.log(aHref);
+       // console.log(aHref);
         if(aHref !== undefined){
             var resultAHref = aHref.match(regExp);
             if(resultAHref != null){
@@ -189,10 +191,9 @@ function validateCustom (fileData, callback){
     $ = cheerio.load(fileHtml);
     var characters = "`|~|¢|£|¤|¥|¦|§|¨|©|ª|«|¬|®|¯|°|±|²|³|µ|¶|·|¹|º|»|¼|½|¾|¿|À|Á|Â|Ã|Ä|Å|Æ|Ç|È|É|Ê|Ë|Ì|Í|Î|Ï|Ð|Ñ|Ò|Ó|Ô|Õ|Ö|×|Ø|Ù|Ú|Û|Ü|Ý|Þ|ß|à|á|â|ã|ä|å|æ|ç|è|é|ê|ë|ì|í|î|ï|ð|ñ|ò|ó|ô|õ|ö|÷|ø|ù|ú|û|ü|ý|þ|ÿ|Ā|ā|Ă|ă|Ą|ą|Ć|ć|Ĉ|ĉ|Ċ|ċ|Č|č|Ď|Đ|đ|Ē|ē|Ĕ|ĕ|Ė|ė|Ę|ę|Ě|ě|Ĝ|ĝ|Ğ|ğ|Ġ|ġ|Ģ|ģ|Ĥ|ĥ|Ħ|ħ|Ĩ|ĩ|Ī|ī|Ĭ|ĭ|Į|į|İ|ı|Ĳ|ĳ|Ĵ|ĵ|Ķ|ķ|ĸ|Ĺ|ĺ|Ļ|ļ|Ľ|ľ|Ŀ|ŀ|Ł|ł|Ń|ń|Ņ|ņ|Ň|ň|ŉ|Ŋ|ŋ|Ō|ō|Ŏ|ŏ|Ő|ő|Œ|œ|Ŕ|ŕ|Ŗ|ŗ|Ř|ř|Ś|ś|Ŝ|ŝ|Ş|ş|Š|š|Ţ|ţ|Ť|ť|Ŧ|ŧ|Ũ|ũ|Ū|ū|Ŭ|ŭ|Ů|ů|Ű|ű|Ų|ų|Ŵ|ŵ|Ŷ|ŷ|Ÿ|Ź|ź|Ż|ż|Ž|ž|ſ|ƀ|Ɓ|Ƃ|ƃ|Ƅ|ƅ|Ɔ|Ƈ|ƈ|Ɖ|Ɗ|Ƌ|ƌ|ƍ|Ǝ|Ə|Ɛ|Ƒ|ƒ|™";
     var tracking = "&lt;DI_TRACKING_CODE\\/&gt|&lt;DI_TRACKING_CODE\\/>|<DI_TRACKING_CODE\\/&gt;|&lt;DI_MEMBER_ATTR/&gt;";
-    var tagPartialHtml = "<span|<\\/span>|<a|<\\/a>|<td|<\\/td>";
+    var tagPartialHtml = "<span|<\\/span>|<a|<\\/a>|<td|<\\/td>|<html|<\\/html>|<body|<\\/body>|<span|<\\/span>";
     var tagBr = "<br>|< br >|<br >|< br>";
     var tagHtml = "<HTML|<A|<ABBR|<ACRONYM|<ADDRESS|<APPLET|<AREA|<ARTICLE|<ASIDE|<AUDIO|<B|<BASE|<BASEFONT|<BDI|<BDO|<BIG|<BLOCKQUOTE|<BODY|<BUTTON|<CANVAS|<CAPTION|<CENTER|<CITE|<CODE|<COL|<COLGROUP|<DATALIST|<DD|<DEL|<DETAILS|<DFN|<DIALOG|<DIR|<DIV|<DL|<DT|<EM|<EMBED|<FIELDSET|<FIGCAPTION|<FIGURE|<FONT|<FOOTER|<FORM|<FRAME|<FRAMESET|<H1|<H2|<H3|<H4|<H5|<H6|<HEAD|<HEADER|<HR|<HTML|<I|<IFRAME|<IMG|<INPUT|<INS|<KBD|<KEYGEN|<LABEL|<LEGEND|<LI|<LINK|<MAIN|<MAP|<MARK|<MENU|<MENUITEM|<META|<METER|<NAV|<NOFRAMES|<NOSCRIPT|<OBJECT|<OL|<OPTGROUP|<OPTION|<OUTPUT|<P|<PARAM|<PRE|<PROGRESS|<Q|<RP|<RT|<RUBY|<S|<SAMP|<SCRIPT|<SECTION|<SELECT|<SMALL|<SOURCE|<SPAN|<STRIKE|<STRONG|<STYLE|<SUB|<SUMMARY|<SUP|<TABLE|<TBODY|<TD|<TEXTAREA|<TFOOT|<TH|<THEAD|<TIME|<TITLE|<TR|<TRACK|<TT|<U|<UL|<VAR|<VIDEO|<WBR|HTML>|A>|ABBR>|ACRONYM>|ADDRESS>|APPLET>|AREA>|ARTICLE>|ASIDE>|AUDIO>|B>|BASE>|BASEFONT>|BDI>|BDO>|BIG>|BLOCKQUOTE>|BODY>|BUTTON>|CANVAS>|CAPTION>|CENTER>|CITE>|CODE>|COL>|COLGROUP>|DATALIST>|DD>|DEL>|DETAILS>|DFN>|DIALOG>|DIR>|DIV>|DL>|DT>|EM>|EMBED>|FIELDSET>|FIGCAPTION>|FIGURE>|FONT>|FOOTER>|FORM>|FRAME>|FRAMESET>|H1>|H2>|H3>|H4>|H5>|H6>|HEAD>|HEADER>|HR>|HTML>|I>|IFRAME>|IMG>|INPUT>|INS>|KBD>|KEYGEN>|LABEL>|LEGEND>|LI>|LINK>|MAIN>|MAP>|MARK>|MENU>|MENUITEM>|META>|METER>|NAV>|NOFRAMES>|NOSCRIPT>|OBJECT>|OL>|OPTGROUP>|OPTION>|OUTPUT>|P>|PARAM>|PRE>|PROGRESS>|Q>|RP>|RT>|RUBY>|S>|SAMP>|SCRIPT>|SECTION>|SELECT>|SMALL>|SOURCE>|SPAN>|STRIKE>|STRONG>|STYLE>|SUB>|SUMMARY>|SUP>|TABLE>|TBODY>|TD>|TEXTAREA>|TFOOT>|TH>|THEAD>|TIME>|TITLE>|TR>|TRACK>|TT>|U>|UL>|VAR>|VIDEO>|WBR>";
-    var tagHtmlBody = "<html|<\\/html>|<body>|<\\/body>";
 
     var validateExp = [
         {
@@ -202,7 +203,7 @@ function validateCustom (fileData, callback){
             'operation' : 'match',
             'value' : false,
             'result' : 'undefined',
-            'msg' : ''
+            'msg' : 'Hay @@ sin codificar'
         },
         {
             'expression' : tracking,
@@ -211,7 +212,7 @@ function validateCustom (fileData, callback){
             'operation' : 'match',
             'value' : false,
             'result' : 'undefined',
-            'msg' : ''
+            'msg' : 'Hay @@ .Si hay alguno de estos, por favor cambiarlo al correcto'
         },
         {
             'expression' : tagPartialHtml,
@@ -220,7 +221,7 @@ function validateCustom (fileData, callback){
             'operation' : 'match',
             'value' : false,
             'result' : 'undefined',
-            'msg' : ''
+            'msg' : 'Hay @@ tags'
         },
         {
             'expression' : tagBr,
@@ -229,7 +230,7 @@ function validateCustom (fileData, callback){
             'operation' : 'match',
             'value' : false,
             'result' : 'undefined',
-            'msg' : ''
+            'msg' : 'Hay @@ .Deben ser declarados como <br/>'
         },
         {
             'expression' : tagHtml,
@@ -238,16 +239,7 @@ function validateCustom (fileData, callback){
             'operation' : 'match',
             'value' : false,
             'result' : 'undefined',
-            'msg' : ''
-        },
-        {
-            'expression' : tagHtmlBody,
-            'option' : 'g',
-            'str' : fileHtml,
-            'operation' : 'match',
-            'value' : false,
-            'result' : 'undefined',
-            'msg' : ''
+            'msg' : 'Hay @@ tags en mayúscula'
         }
 
     ];
@@ -277,7 +269,11 @@ function validateCustom (fileData, callback){
                         if(val == valor)
                             acum++;
                     });
-                    message = 'Hay '+ acum +' '+ val + ' sin codificar \n';
+                    //message = 'Hay '+ acum +' '+ val + ' sin codificar \n';
+                    if(val.indexOf('<') == 0)
+                        val = val.search('>') == -1 ? val.concat('>'):val;
+                    message = currValue.msg.replace('@@',acum +' '+ val);
+                    //console.log('sssssssssss',currValue.msg, message);
                     errorMsg.push(message);
 
                 });
@@ -288,8 +284,8 @@ function validateCustom (fileData, callback){
         }
     });
 
-    var msgTdImg = 'Hay '+ validateTdImg() + ' sin declarar align y valign';
-    errorMsg.push(msgTdImg);
+    errorMsg.push(validateTdImg());
+
     errorMsg.push(validateTdWebkitTextSize(fileHtml));
 
     errorMsg.push(widthTable(fileHtml));
