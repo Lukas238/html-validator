@@ -107,7 +107,6 @@ function validateTel (strFile){
         value = $(this).attr('href');
         if(value !== undefined){
             if (patt.test(value) === true){
-                console.log('Siiii');
                 if(tel.test(value) === false){
                     acum++
                 }
@@ -118,6 +117,17 @@ function validateTel (strFile){
 
     return 'Hay ' + acum + ' teléfonos que no tienen la estructura correspondiente (tel:+numero)';
 }
+
+/*function closingTag (strFile){
+  var tag = ['meta','img'];
+  var patt = new RegExp('\\/>');
+    //console.log('dddd',$('meta').html())
+  tag.forEach(function(currValue, currIndex){
+     $(currValue).each(function(index, value){
+        console.log('test', $(this));
+     });
+  });
+};*/
 
 function validateCustom (fileData, callback){
     var fileHtml = fileData.toString();
@@ -241,6 +251,8 @@ function validateCustom (fileData, callback){
     errorMsg.push(validateImgVspace());
 
     errorMsg.push(validateTel(fileHtml));
+
+    //closingTag(fileHtml);
 
 
     callback (null, errorMsg);
