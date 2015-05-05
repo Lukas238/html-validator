@@ -310,6 +310,7 @@ function validateCustom (fileData, callback){
 
 
 customValidator.validate = validateCustom;
+customValidator.validateTdWebkitTextSize = validateTdWebkitTextSize;
 module.exports = customValidator;
-module.exports = validateTdWebkitTextSize;
+
 
