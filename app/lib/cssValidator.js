@@ -5,7 +5,7 @@ var flagUrl = false;
 
 
 var options = {
-    hostname: 'jigsaw.w3.org/css-validator/validator',
+    hostname: 'jigsaw.w3.org',
     //port: 447,
     method: 'GET'
 };
