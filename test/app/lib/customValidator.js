@@ -7,7 +7,7 @@ var fs = require('fs');
 
 var file = fs.readFileSync('test/app/lib/fileTest/testWebkit.html').toString();
 $ = cheerio.load(file);
-console.log('archivo', $);
+
 
 describe('test in custom validartor',function(){
 	it('Validar webkit',function(){
