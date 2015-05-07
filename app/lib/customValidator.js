@@ -1,7 +1,9 @@
 'use strict';
+
 var _ = require('lodash');
 var cheerio = require('cheerio');
 var customValidator = {};
+var $;
 
 function validateTdImg(){
     var acum = 0;
@@ -14,7 +16,6 @@ function validateTdImg(){
             var alignTd = $(this).attr("align");
             var valignTd = $(this).attr("valign");
             if(withTd != withImg && (alignTd === undefined || valignTd === undefined)){
-                //console.log('aaaa',alignTd, valignTd, withImg, withTd)
                 acum++;
             }
         }
@@ -27,7 +28,6 @@ function validateTdImg(){
 };
 
 function validateTdWebkitTextSize(strFile){
-    console.log('parametro', typeof strFile)
     var acum = 0;
     var webK = "-webkit-text-size-adjust";
     var regExp;
@@ -39,7 +39,7 @@ function validateTdWebkitTextSize(strFile){
 
         var styleTd = $(this).attr("style");
         var textTd = $(this).find('span').text();
-       // console.log(textTd);
+
         if(styleTd !== undefined && textTd !== ''){
             var wkInTd = styleTd.match(regExp);
             if (wkInTd !== undefined){
@@ -144,7 +144,7 @@ function validateImgCaracters(chars){
         var imgSrc = $(this).attr("src");
         if(imgSrc !== undefined){
             var resultImgSrc = imgSrc.match(regExp);
-            //console.log('aa',  imgSrc, resultImgSrc)
+
             if (resultImgSrc != null || imgSrc.length == 0){
                 acum++;
             }
@@ -247,19 +247,19 @@ function validateCustom (fileData, callback){
     var errorMsg = [];
 
     validateExp.forEach(function (currValue, currIndex){
-        //console.log('index', currIndex)
+
         var regExp;
         switch (currValue.operation){
             case 'match':
                 regExp = new RegExp(currValue.expression, currValue.option);
-                //console.log('aaaaaaaa', regExp)
+
                 currValue.result = currValue.str.match(regExp);
                 break;
         }
         if (typeof currValue.result !== 'undefined'){
-            //console.log(currValue.result instanceof Array, typeof currValue.result)
+
             if (currValue.result instanceof Array && currValue.result.length - 1 > 0){
-                //console.log('array', currValue.result, currValue.result.length)
+
                 var arrRes = new Array();
 
                 var arrUnique =  _.uniq(currValue.result);
@@ -270,17 +270,17 @@ function validateCustom (fileData, callback){
                         if(val == valor)
                             acum++;
                     });
-                    //message = 'Hay '+ acum +' '+ val + ' sin codificar \n';
+
                     if(val.indexOf('<') == 0)
                         val = val.search('>') == -1 ? val.concat('>'):val;
                     message = currValue.msg.replace('@@',acum +' '+ val);
-                    //console.log('sssssssssss',currValue.msg, message);
+
                     errorMsg.push(message);
 
                 });
 
                 currValue.msg = message;
-                //console.log('res', errorMsg);
+
             }
         }
     });
@@ -298,9 +298,6 @@ function validateCustom (fileData, callback){
     errorMsg.push(validateAmpersandHref());
 
     errorMsg.push(validateTel(fileHtml));
-
-
-    //closingTag(fileHtml);
 
 
     callback (null, errorMsg);

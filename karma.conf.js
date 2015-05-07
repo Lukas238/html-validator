@@ -1,3 +1,4 @@
+'use strict';
 // Karma configuration
 // Generated on Tue Feb 24 2015 11:16:24 GMT-0300 (Hora estándar de Argentina)
 
@@ -83,7 +84,7 @@ module.exports = function(config) {
       }
     },
 
-    customLaunchers: {
+    /*customLaunchers: {
       'PhantomJS_custom': {
         base: 'PhantomJS',
         options: {
@@ -94,7 +95,7 @@ module.exports = function(config) {
         },
         flags: ['--remote-debugger-port=9000']
       }
-    },
+    },*/
 
 
     // Continuous Integration mode

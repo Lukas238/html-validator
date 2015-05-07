@@ -1,34 +1,12 @@
+'use strict';
+
 var validateCss = require('css-validator');
 var http = require('http');
 var cssValidator = {};
-//var flagUrl = false;
 
-/*
-var options = {
-    hostname: 'jigsaw.w3.org',
-    //port: 447,
-    method: 'GET'
-};
-
-
-var req = http.request(options, function(res) {
-    ;
-    res.on('data', function (chunk) {
-        console.log('OK');
-        flagUrl = true;
-    });
-});
-
-req.on('error', function(e) {
-    console.log('problem with request: ' + e.message);
-});
-
-
-req.end();
-*/
 var validate = function validate(fileData, callback){
 
-   //if(flagUrl){
+
        var htmlText = fileData.toString();
        var arrCss = htmlText.split("\n");
        var arrStyle = [];
@@ -76,9 +54,7 @@ var validate = function validate(fileData, callback){
 
        });
 
-   /*}else{
-       return callback (null, 'Error');
-   }*/
+
 
 
 };

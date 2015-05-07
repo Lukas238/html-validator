@@ -1,3 +1,5 @@
+'use strict';
+
 var cheerio = require('cheerio');
 var responsiveValidator = {};
 
@@ -6,7 +8,7 @@ function validate (fileData, responsiveData, callback){
     if(responsiveData.toUpperCase() === 'YES'){
 
         var fileHtml = fileData.toString();
-        $ = cheerio.load(fileHtml);
+        var $ = cheerio.load(fileHtml);
         var bodyStyle = $('body').attr('style');
         var strTargetDensityDpi = $("meta[name='viewport']").attr('content');
         var style = $('style').html();

@@ -1,3 +1,5 @@
+'use strict';
+
 var testValidator = require('./../../../app/lib/cssValidator.js');
 var validateCss = require('css-validator');
 var fs = require('fs');

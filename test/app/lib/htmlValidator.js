@@ -1,3 +1,5 @@
+'use strict';
+
 var validator = require('./../../../app/lib/htmlValidator');
 
 var dtoMsg = {

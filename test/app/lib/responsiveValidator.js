@@ -1,3 +1,5 @@
+'use strict';
+
 var testValidator = require('./../../../app/lib/responsiveValidator.js');
 var testCheerio = require('cheerio');
 var fs = require('fs');
@@ -57,7 +59,7 @@ describe('Testing for Responsive Validator', function (){
 
 
     var testFileData = fs.readFileSync('test/app/lib/fileTest/testResponsive.html','utf-8');
-    $ = testCheerio.load(testFileData);
+    var $ = testCheerio.load(testFileData);
     // console.log('dd', testFileData);
 
 

@@ -1,3 +1,5 @@
+'use strict';
+
 var config = {
     port: 3001,
     viewCache: false,

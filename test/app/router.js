@@ -1,3 +1,5 @@
+'use strict';
+
 process.env.NODE_ENV = 'local';
 var request = require('supertest');
 var app = require('./../../app/express');

@@ -1,3 +1,5 @@
+'use strict';
+
 var config = require('./../config/config'),
     path = require('path'),
     favicon = require('serve-favicon'),
