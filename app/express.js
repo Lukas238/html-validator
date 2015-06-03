@@ -39,6 +39,12 @@ var app = express();
         var morgan = require('morgan');
         app.use(morgan('dev'));
     }
+    app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+    next();
+    });
     // Parsers
     app.use(bodyParser.json()); // for parsing application/json
     app.use(bodyParser.urlencoded({ extended: true }));  //This object will contain key-value pairs, where the value can be a string or array
