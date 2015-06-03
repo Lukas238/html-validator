@@ -1,8 +1,8 @@
 'use strict';
 angular.module('mrmConfiguration', []).
 constant("serverConfiguration", (function() {
-    var url = "http://localhost";
-    var port = 3000;
+    var url = "http://app.emailvalidator.stage4.mrm.com.ar";
+    var port = '';
     var publicApi = "/";
 
     return {

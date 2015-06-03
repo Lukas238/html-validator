@@ -1,11 +1,11 @@
 'use strict';
 
 var config = {
-    port: 3001,
+    port: 10002,
     viewCache: false,
-    viewStaticFiles: true,
-    viewDocumentation: true,
-    requestLogConsole: true
+    viewStaticFiles: false,
+    viewDocumentation: false,
+    requestLogConsole: false
 };
 
 module.exports = config;
